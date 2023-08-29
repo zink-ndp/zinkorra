@@ -148,7 +148,7 @@ textarea{
 .image-container {
     position: relative;
     overflow: hidden;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     height: 250px; /* Đặt chiều cao cho các thẻ div */
     box-sizing: border-box;
 }

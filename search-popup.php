@@ -29,7 +29,49 @@
                     }
                 ?> 
             </ul>
-        
+            
+            <div style="width: 100%; text-align: center;" >
+                <h3 class="mt-4">Tìm kiếm bằng hình ảnh</h3>
+                <form action="ai/image-search.php" method="post" enctype="multipart/form-data">
+                    <div class="row" style="text-align: center;">
+                        <div class="col-12">
+                            <input type="file" name="img" id="imageInput" accept="image/*">
+                        </div>
+                        <div class="col-4"></div>
+                        <div class="col-4 image-container mt-2" style="border: none !important;" id="imagePreview"></div>
+                        <div class="col-4"></div>
+                        <div class="col-12" id="btn"></div>
+                    </div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const imageInput = document.getElementById("imageInput");
+                            const imagePreview = document.getElementById("imagePreview");
+                            const button = document.getElementById("btn");
+
+                            imageInput.addEventListener("change", function() {
+                                const selectedImage = imageInput.files[0]; // Lấy file đã chọn
+                                if (selectedImage) {
+                                    const reader = new FileReader();
+
+                                    reader.onload = function(event) {
+                                        const img = document.createElement("img");
+                                        img.src = event.target.result;
+                                        img.classList.add("preview-image", "fit-image");
+                                        imagePreview.innerHTML = ""; // Xoá bỏ ảnh hiện tại (nếu có)
+                                        imagePreview.appendChild(img); // Thêm ảnh mới
+                                    };
+
+                                    reader.readAsDataURL(selectedImage);
+
+                                    button.innerHTML = '<button class="theme-btn btn-style-one mt-2" type="submit">Tìm</button>'
+
+                                }
+                            });
+                        });
+                    </script>
+                </form>
+            </div>
+
         </div>
         
     </div>
