@@ -18,13 +18,13 @@ st.run_index()
 # Get metadata
 metadata = st.get_image_metadata_file()
 
-print(st.get_similar_images(image_path='img_to_search.png', number_of_images=4))
+# print(st.get_similar_images(image_path='img_to_search.png', number_of_images=4))
 
 # Tạo một tệp để ghi dữ liệu
 with open("data.txt", "w") as f:
 
     # Đọc dữ liệu từ biến
-    data = st.get_similar_images(image_path='img_to_search.png', number_of_images=4)
+    data = st.get_similar_images(image_path='img_to_search.png', number_of_images=6)
 
     # Chỉ lấy sau dấu "\"
     for key, value in data.items():

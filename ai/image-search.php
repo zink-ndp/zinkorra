@@ -16,18 +16,10 @@
     $new_filename = 'img_to_search.png';
     rename($filename, $new_filename);
 
-    system('echo "no" | python3 ai.py');
+    system('echo "yes" | python3 ai.py');
 
-    // header('Location: ../search-result.php');
+    header('Location: ../search-result.php');
 
-    $myfile = fopen("data.txt", "r");
-
-    while (!feof($myfile)) {
-    $line = fgets($myfile);
-        echo '<img src="../images/products/'. $line . PHP_EOL.'" alt=""><br>';
-    }
-
-    fclose($myfile);
-
+    
 ?>
 
