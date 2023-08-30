@@ -10,57 +10,24 @@
     // Lấy tên file
     $filename = $file['name'];
 
-    // Lấy đường dẫn thư mục đích
-    // $destination_path = 'ai';
-
-    // Copy file
-    // move_uploaded_file($file['tmp_name'], $destination_path . '/' . $filename);
-    // $new_filename = 'img_to_search.png';
-    // rename($destination_path . '/' . $filename, $destination_path . '/' . $new_filename);
 
     move_uploaded_file($file['tmp_name'],$filename);
+
     $new_filename = 'img_to_search.png';
     rename($filename, $new_filename);
 
+    system('echo "no" | python3 ai.py');
 
-    // delete all files and sub-folders from a folder
-    $dir = "metadata-files";
+    // header('Location: ../search-result.php');
 
-    // if (is_dir($folder)) {
-    //     deleteAll($folder);
-    //     function deleteAll($dir) {
-    //         foreach(glob($dir . '/*') as $file) {
-    //         if(is_dir($file))
-    //             deleteAll($file);
-    //         else
-    //             unlink($file);
-    //         }
-    //         rmdir($dir);
-    //     }
-    // }
+    $myfile = fopen("data.txt", "r");
 
-    function delTree($dir) {
-
-        $files = array_diff(scandir($dir), array('.','..'));
-     
-         foreach ($files as $file) {
-     
-           (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file");
-     
-         }
-     
-         return rmdir($dir);
-     
+    while (!feof($myfile)) {
+    $line = fgets($myfile);
+        echo '<img src="../images/products/'. $line . PHP_EOL.'" alt=""><br>';
     }
 
-    if(is_dir("$dir")){
-        delTree($dir);
-    }
-    
+    fclose($myfile);
 
-    // $command = escapeshellcmd('python ai/ai.py'); 
-    // $output = shell_exec($command); 
-    // echo $output; 
-
-    system("python ai.py");
 ?>
+

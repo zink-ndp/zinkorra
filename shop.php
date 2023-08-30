@@ -8,6 +8,11 @@
 
 <body>
 
+<!--Search Popup-->
+<?php
+	include "search-popup.php";
+?>
+
 <div class="page-wrapper">
     <!-- Preloader -->
     <!-- <div class="preloader"></div> -->

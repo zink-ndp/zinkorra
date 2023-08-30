@@ -202,6 +202,11 @@
     </div>
 </div>
 
+<!--Search Popup-->
+<?php
+	include "search-popup.php";
+?>
+
 <!--Scroll to top-->
 <script src="js/jquery.js"></script>
 <script src="js/popper.min.js"></script>
