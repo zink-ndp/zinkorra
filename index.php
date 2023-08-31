@@ -89,56 +89,36 @@
 	<!-- End Banner Section -->
 	
 	<!-- Services Section -->
-	<section class="services-section">
+	<section class="services-section" id="services-section">
 		<div class="auto-container">
 			<!-- Title Box -->
 			<div class="title-box">
-				<h2>Không gian tuyệt vời mang lại <br> cảm giác tươi mới.</h2>
+				<h2>Sản phẩm mới nhất</h2>
 			</div>
 			
 			<div class="row clearfix">
-				
+				<?php
+					$sql = "select * from products order by PD_ID DESC limit 3";
+					$result = $conn->query($sql);
+					if ($result->num_rows > 0) {
+						$result = $conn->query($sql);
+						$result_all = $result -> fetch_all(MYSQLI_ASSOC);
+						foreach ($result_all as $row) {
+				?>
 				<!-- Service Block -->
 				<div class="service-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image-container image" style="height: 200px !important;">
-							<a href="residental-interior.html"><img class="fit-image" src="images/resource/service-1.jpg" alt="" /></a>
+					<div class="inner-box">
+						<div class="image-container" style="height: 200px !important;">
+							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><img class="fit-image" src="images/products/<?php echo $row['PD_PIC'] ?>" alt="" /></a>
 						</div>
 						<div class="lower-content">
-							<h3><a href="residental-interior.html">Nội thất phòng khách</a></h3>
-							<div class="text">Proactively envisioned multimedia based exper tise and cross-media growth strategies.</div>
-							<a href="residental-interior.html" class="read-more">Xem thêm</a>
+							<h3><a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><?php echo $row['PD_NAME'] ?></a></h3>
+							<div class="text"><?php echo $row['PD_DESCRI'] ?></div>
+							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>" class="read-more">Xem thêm</a>
 						</div>
 					</div>
 				</div>
-				
-				<!-- Service Block -->
-				<div class="service-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image-container image" style="height: 200px !important;">
-							<a href="office-interior.html"><img class="fit-image" src="images/resource/service-2.jpg" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							<h3><a href="office-interior.html">Thiết kế nhà bếp</a></h3>
-							<div class="text">Proactively envisioned multimedia based exper tise and cross-media growth strategies. Seam lessly visualize quality intellectual.</div>
-							<a href="office-interior.html" class="read-more">Xem thêm</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Service Block -->
-				<div class="service-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image-container image" style="height: 200px !important;">
-							<a href="commercial-interior.html"><img  class="fit-image"src="images/resource/service-3.jpg" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							<h3><a href="commercial-interior.html">Không gian phòng ngủ</a></h3>
-							<div class="text">Proactively envisioned multimedia based exper tise and cross-media growth strategies. Seam lessly visualize quality intellectual.</div>
-							<a href="commercial-interior.html" class="read-more">Xem thêm</a>
-						</div>
-					</div>
-				</div>
+				<?php }} ?>
 				
 			</div>
 			

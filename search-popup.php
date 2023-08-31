@@ -41,6 +41,9 @@
                         <div class="col-4 image-container mt-2" style="border: none !important;" id="imagePreview"></div>
                         <div class="col-4"></div>
                         <div class="col-12" id="btn"></div>
+                        <div class="col-12">
+                            <div id="spinner"></div>
+                        </div>
                     </div>
                     <script>
                         document.addEventListener("DOMContentLoaded", function() {
@@ -63,11 +66,16 @@
 
                                     reader.readAsDataURL(selectedImage);
 
-                                    button.innerHTML = '<button class="theme-btn btn-style-one mt-2" type="submit">Tìm</button>'
+                                    button.innerHTML = '<button id="search-btn" class="theme-btn btn-style-one mt-2" type="submit">Tìm</button>'
 
                                 }
                             });
                         });
+
+                        document.getElementById("search-btn").addEventListener("click", function() {
+                            document.getElementById('spinner').innerHTML = 'AI đang tìm hình ảnh phù hợp...';
+                        });
+
                     </script>
                 </form>
             </div>
@@ -76,3 +84,4 @@
         
     </div>
 </div>
+

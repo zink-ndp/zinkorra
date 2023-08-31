@@ -16,7 +16,7 @@
     $new_filename = 'img_to_search.png';
     rename($filename, $new_filename);
 
-    system('echo "yes" | python3 ai.py');
+    system('echo "no" | python3 ai.py');
 
     header('Location: ../search-result.php');
 
