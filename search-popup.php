@@ -72,9 +72,6 @@
                             });
                         });
 
-                        document.getElementById("search-btn").addEventListener("click", function() {
-                            document.getElementById('spinner').innerHTML = 'AI đang tìm hình ảnh phù hợp...';
-                        });
 
                     </script>
                 </form>
