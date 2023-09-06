@@ -3,15 +3,19 @@ import pandas as pd
 import timm
 import re
 timm.list_models(pretrained=True)
+from fastai.vision.all import *
 
 from DeepImageSearch import Load_Data, Search_Setup
 
 dl = Load_Data()
 
-img_list = dl.from_folder(folder_list = ["input/chair","input/bed","input/cabinet","input/mattress","input/table","input/toilet","input/other"])
+img_list = dl.from_folder(folder_list = ["input"])
 
 # For Faster Serching we need to index Data first, After Indexing all the meta data stored on the local path
-st = Search_Setup(img_list, model_name="vgg19", pretrained=True, image_count=None)
+# vgg19
+# resnet34
+# vit_base_patch16_224_in21k
+st = Search_Setup(img_list, model_name="resnet50", pretrained=True, image_count=None)
 
 st.run_index()
 

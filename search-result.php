@@ -70,7 +70,7 @@
                 <div class="col-3">
                     <div class="row clear-fix">
                         <h4 style="font-weight: bold; color: black;">Hình ảnh cần tìm</h4>
-                        <img class="mt-2" style="height: 300px; width: auto;" src="ai/img_to_search.png" alt="">
+                        <img class="mt-2" style="height: 300px;" src="ai/img_to_search.png" alt="">
                     </div>
                 </div>
                 <div class="col-9">

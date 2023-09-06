@@ -1,5 +1,5 @@
 <?php
-    $command = "echo 'no' | python ai.py"; 
-    shell_exec($command);
+    $op = exec('echo "no" | python3 ai.py');
+    echo $op;
     header('Location: ../search-result.php');
 ?>
