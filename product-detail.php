@@ -102,32 +102,23 @@
                         
                             <!--Tab Btns-->
                             <ul class="tab-btns tab-buttons clearfix">
-                                <li data-tab="#prod-details" class="tab-btn active-btn">Descripton</li>
-                                <li data-tab="#prod-spec" class="tab-btn">Specification</li>
-                                <li data-tab="#prod-reviews" class="tab-btn">Review (2)</li>
+                                <li data-tab="#prod-reviews" class="tab-btn active-btn">Review (2)</li>
+                                <li data-tab="#prod-details" class="tab-btn">Descripton</li>
+                                <!-- <li data-tab="#prod-spec" class="tab-btn">Specification</li> -->
                             </ul>
                             
                             <!--Tabs Container-->
                             <div class="tabs-content">
-                                
-                                <!--Tab / Active Tab-->
-                                <div class="tab active-tab" id="prod-details">
-                                    <div class="content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                                    </div>
-                                </div>
-                                
                                 <!--Tab-->
-                                <div class="tab" id="prod-spec">
+                                <!-- <div class="tab" id="prod-spec">
                                     <div class="content">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                                     </div>
-                                </div>
+                                </div> -->
                                 
                                 <!--Tab-->
-                                <div class="tab" id="prod-reviews">
-                                    <h2 class="title">2 Reviews For win Your Friends</h2>
+                                <div class="tab active-tab" id="prod-reviews">
+                                    <!-- <h2 class="title">2 Reviews For win Your Friends</h2> -->
                                     <!--Reviews Container-->
                                     <div class="comments-area">
                                         <!--Comment Box-->
@@ -147,23 +138,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--Comment Box-->
-                                        <div class="comment-box reply-comment">
-                                            <div class="comment">
-                                                <div class="author-thumb"><img src="images/resource/author-2.jpg" alt=""></div>
-                                                <div class="comment-inner">
-                                                    <div class="comment-info clearfix">William Cobus – Aug 21, 2016:</div>
-                                                    <div class="rating">
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star-half-empty"></span>
-                                                    </div>
-                                                    <div class="text">There anyone who loves or pursues or desires to obtain pain itself, because it is pain sed, because occasionally circumstances occur some great pleasure.</div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         
                                     </div>
                                     
@@ -173,20 +147,19 @@
                                         <div class="rating-box">
                                             <div class="text"> Your Rating:</div>
                                             <div class="rating">
-                                                <a href="#"><span class="fa fa-star"></span></a>
+                                                <a id="astar1" href="#"><span class="fa fa-star"></span></a>
                                             </div>
                                             <div class="rating">
-                                                <a href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
-                                                <a href="#"></a>
+                                                <a id="astar2" href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
                                             </div>
                                             <div class="rating">
-                                                <a href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
+                                                <a id="astar3" href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
                                             </div>
                                             <div class="rating">
-                                                <a href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
+                                                <a id="astar4" href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
                                             </div>
                                             <div class="rating">
-                                                <a href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
+                                                <a id="astar5" href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
                                             </div>
                                         </div>
                                         <form method="post" action="templateshub.net">
@@ -219,6 +192,15 @@
                                     </div>
                                     
                                 </div>
+
+                                <!--Tab / Active Tab-->
+                                <div class="tab" id="prod-details">
+                                    <div class="content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                    </div>
+                                </div>
+                                
                                 
                             </div>
                         </div>
@@ -294,34 +276,7 @@
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
 
 <!--Search Popup-->
-<div id="search-popup" class="search-popup">
-	<div class="close-search theme-btn"><span class="flaticon-cancel"></span></div>
-	<div class="popup-inner">
-		<div class="overlay-layer"></div>
-    	<div class="search-form">
-        	<form method="post" action="templateshub.net">
-            	<div class="form-group">
-                	<fieldset>
-                        <input type="search" class="form-control" name="search-input" value="" placeholder="Search Here" required >
-                        <input type="submit" value="Search Now!" class="theme-btn">
-                    </fieldset>
-                </div>
-            </form>
-            
-            <br>
-            <h3>Recent Search Keywords</h3>
-            <ul class="recent-searches">
-                <li><a href="#">Home Interiors</a></li>
-                <li><a href="#">Offices Interiors</a></li>
-                <li><a href="#">Showroom Interiors</a></li>
-                <li><a href="#">Building Interiors</a></li>
-                <li><a href="#">Shops Interiors</a></li>
-            </ul>
-        
-        </div>
-        
-    </div>
-</div>
+<?php require 'search-popup.php' ?>
 
 <!--Scroll to top-->
 <script src="js/jquery.js"></script>

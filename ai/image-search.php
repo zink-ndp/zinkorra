@@ -20,7 +20,7 @@
         .rectangle {
             text-align: center;
             background-color: #dfb162; /* Màu chữ nhật */
-            padding: 100px 200px;
+            padding: 60px 150px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -59,11 +59,12 @@
     <div class="container">
         <div class="rectangle">
             <div class="rectangle1">
+                <!-- <div class="preloader"></div>
                 <div class="preloader"></div>
-                <div class="preloader"></div>
-                <div class="preloader"></div>
+                <div class="preloader"></div> -->
+                <img style="height: 230px; margin-top: -50px;" src="robot.gif" alt="">
             </div>
-            <h3 style="margin-top: 20px;">AI đang xử lý. Vui lòng đợi...</h3>
+            <h3 style="margin-top: -20px;">AI đang xử lý. Vui lòng đợi...</h3>
         </div>
     </div>
 </body>

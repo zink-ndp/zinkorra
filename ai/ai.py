@@ -14,8 +14,11 @@ img_list = dl.from_folder(folder_list = ["input"])
 # For Faster Serching we need to index Data first, After Indexing all the meta data stored on the local path
 # vgg19
 # resnet34
+# resnet50
 # vit_base_patch16_224_in21k
-st = Search_Setup(img_list, model_name="resnet50", pretrained=True, image_count=None)
+# adv_inception_v3
+# densenet121
+st = Search_Setup(img_list, model_name="densenet121", pretrained=True, image_count=None)
 
 st.run_index()
 
@@ -28,7 +31,7 @@ metadata = st.get_image_metadata_file()
 with open("data.txt", "w") as f:
 
     # Đọc dữ liệu từ biến
-    data = st.get_similar_images(image_path='img_to_search.png', number_of_images=6)
+    data = st.get_similar_images(image_path='img_to_search.png', number_of_images=9)
 
     # Chỉ lấy sau dấu "\"
     for key, value in data.items():

@@ -67,12 +67,22 @@
     <section class="shop-section">
     	<div class="auto-container">
             <div class="row">
-                <div class="col-3">
+                <div style="text-align: center;" class="col-2">
                     <div class="row clear-fix">
-                        <h4 style="font-weight: bold; color: black;">Hình ảnh cần tìm</h4>
-                        <img class="mt-2" style="height: 300px;" src="ai/img_to_search.png" alt="">
+                        <h5 style="font-weight: bold; color: black;">Hình ảnh cần tìm</h5>
+                        <img class="mt-2 fit-image" style="height: 200px;" src="ai/img_to_search.png" alt="">
+                        <?php
+                            $file = fopen("ai/data.txt", "r");
+                            $line = trim(fgets($file).PHP_EOL);
+                            $sql = "select * from type t join products p on p.TY_ID = t.TY_ID where p.PD_PIC = '{$line}'";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            echo "<h5 class='mt-2'>".$row['TY_NAME']."</h5>";
+                            fclose($file);  
+                        ?>
                     </div>
                 </div>
+                <div class="col-1"></div>
                 <div class="col-9">
                     <!--Sec Title-->
                     <div class="title-box">
@@ -81,9 +91,7 @@
                     
                     <div class="row clearfix">
                         <?php
-        
                             $myfile = fopen("ai/data.txt", "r");
-        
                             while (!feof($myfile)) {
                                 $line = fgets($myfile);
                                 // echo $line.PHP_EOL."<br>";
