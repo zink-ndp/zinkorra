@@ -18,7 +18,7 @@ img_list = dl.from_folder(folder_list = ["input"])
 # vit_base_patch16_224_in21k
 # adv_inception_v3
 # densenet121
-st = Search_Setup(img_list, model_name="densenet121", pretrained=True, image_count=None)
+st = Search_Setup(img_list, model_name="resnet50", pretrained=True, image_count=None)
 
 st.run_index()
 

@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-# Tải mô hình ResNet34
+# Tải mô hình ResNet50
 model = tf.keras.applications.ResNet50(include_top=False, weights='imagenet')
 
 # Chuẩn bị dữ liệu huấn luyện và đánh giá
@@ -14,7 +14,7 @@ train_data = tf.keras.preprocessing.image.ImageDataGenerator(
 )
 
 train_data = train_data.flow_from_directory(
-    'input',
+    'C:/xampp/htdocs/zinkorra/ai/input',
     batch_size=32,
     target_size=(224, 224)
 )
@@ -24,7 +24,7 @@ val_data = tf.keras.preprocessing.image.ImageDataGenerator(
 )
 
 val_data = val_data.flow_from_directory(
-    'val',
+    'C:/xampp/htdocs/zinkorra/ai/val',
     batch_size=32,
     target_size=(224, 224)
 )
@@ -33,10 +33,11 @@ val_data = val_data.flow_from_directory(
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 history = model.fit(
-    train_data,
+    x=train_data,
     epochs=10,
     validation_data=val_data
 )
+
 
 # Đánh giá mô hình
 score = model.evaluate(val_data, verbose=0)

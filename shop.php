@@ -107,7 +107,7 @@
                     color: white !important;
                 }
             </style>
-            <div class="shop-fill mb-5">
+            <div class="shop-fill ">
                 <?php
                     $newest="fill-active";
                     $hot="fill-item";
@@ -264,6 +264,39 @@
                         $search_result = "Kết quả tìm kiếm cho từ khoá: ".$_GET['search'];
                     }
                 ?>
+                    <div class="shop-pagination">
+                        <ul class="clearfix">
+                            <?php
+                                if ($current_page != 1){
+
+                            ?>                    
+                                <li class="prev"><a href="shop.php?page=<?php echo $current_page-1 ?>"><i class="fa fa-angle-left"></i></a></li>
+                            <?php
+                                }
+                            ?>
+                            <?php
+                                    // Tính số trang dựa trên tổng số sản phẩm
+                                $q = "SELECT COUNT(*) AS total FROM products";
+                                $rs = $conn->query($q);
+
+                                if ($rs->num_rows > 0) {
+                                    $r = $rs->fetch_assoc();
+                                    $total_products = $r['total'];
+                                } else {
+                                    $total_products = 0;
+                                }
+                                $total_pages = ceil($total_products / $productsPerPage);
+                                for ($i = 1; $i <= $total_pages; $i++) {
+                                    $active_class = ($i == $current_page) ? 'active' : '';
+                                    echo '<li class="' . $active_class . '"><a href="shop.php?page='.$i.'">'.$i.'</a></li>';
+                                }
+
+                                if ($current_page != $total_pages){
+                            ?>
+                            <li class="next"><a href="shop.php?page=<?php echo $current_page+1 ?>"><i class="fa fa-angle-right"></i></a></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
                     <div class="col-12" style="text-align: center; margin-bottom: 15px;">
                         <span style="font-size: 20px;">
                             <?php echo $search_result ?>
@@ -293,7 +326,7 @@
                         </div>
                         <div class="lower-content">
                         	<h3 style="font-size: 14px;"><a href="product-detail.php?id=<?php echo $row["PD_ID"] ?>"><?php echo $row["PD_NAME"] ?></a></h3>
-                            <div class="price mt-n2" style="font-size: 18px !important;"><?php echo number_format($row["PD_PRICE"]) ?> VND</div>
+                            <div class="price mt-n2" style="font-size: 18px !important;"><?php echo number_format($row["PD_PRICE"]) ?>đ</div>
                         </div>
                     </div>
                 </div>
@@ -308,7 +341,14 @@
 
             <div class="shop-pagination">
                 <ul class="clearfix">
-                    <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                    <?php
+                        if ($current_page != 1){
+
+                    ?>                    
+                        <li class="prev"><a href="shop.php?page=<?php echo $current_page-1 ?>"><i class="fa fa-angle-left"></i></a></li>
+                    <?php
+                        }
+                    ?>
                     <?php
                             // Tính số trang dựa trên tổng số sản phẩm
                         $q = "SELECT COUNT(*) AS total FROM products";
@@ -325,8 +365,11 @@
                             $active_class = ($i == $current_page) ? 'active' : '';
                             echo '<li class="' . $active_class . '"><a href="shop.php?page='.$i.'">'.$i.'</a></li>';
                         }
+
+                        if ($current_page != $total_pages){
                     ?>
-                    <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                    <li class="next"><a href="shop.php?page=<?php echo $current_page+1 ?>"><i class="fa fa-angle-right"></i></a></li>
+                    <?php } ?>
                 </ul>
             </div>
 
