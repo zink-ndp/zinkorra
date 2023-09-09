@@ -24,6 +24,9 @@
     <!--End Page Title-->
 	
 	<!--Cart Section-->
+    <?php
+        require 'popup-message.php';
+    ?>
     <section class="cart-section">
         <div class="auto-container">
 
@@ -86,7 +89,7 @@
                                     </form>
                                 </td>
                                 <td><?php echo number_format($s["PD_PRICE"]*$sp["PD_QUANT"]) ?> đ</td>
-                                <td><a href="remove-in-cart.php?pdid=<?php echo $spid ?>" class="remove-btn"><span class="fas fa-times"></span></a></td>
+                                <td><a href="cart-remove-one.php?pdid=<?php echo $spid ?>" class="remove-btn"><span class="fas fa-times"></span></a></td>
                             </tr>
                             <?php
                                         $total +=  $s["PD_PRICE"]*$sp["PD_QUANT"];
@@ -175,36 +178,6 @@
 
 <!--Scroll to top-->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
-
-<!--Search Popup-->
-<div id="search-popup" class="search-popup">
-	<div class="close-search theme-btn"><span class="flaticon-cancel"></span></div>
-	<div class="popup-inner">
-		<div class="overlay-layer"></div>
-    	<div class="search-form">
-        	<form method="post" action="templateshub.net">
-            	<div class="form-group">
-                	<fieldset>
-                        <input type="search" class="form-control" name="search-input" value="" placeholder="Search Here" required >
-                        <input type="submit" value="Search Now!" class="theme-btn">
-                    </fieldset>
-                </div>
-            </form>
-            
-            <br>
-            <h3>Recent Search Keywords</h3>
-            <ul class="recent-searches">
-                <li><a href="#">Home Interiors</a></li>
-                <li><a href="#">Offices Interiors</a></li>
-                <li><a href="#">Showroom Interiors</a></li>
-                <li><a href="#">Building Interiors</a></li>
-                <li><a href="#">Shops Interiors</a></li>
-            </ul>
-        
-        </div>
-        
-    </div>
-</div>
 
 <!--Search Popup-->
 <?php

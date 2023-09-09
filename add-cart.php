@@ -24,7 +24,7 @@
         $_SESSION['message'] = $message;
 
         if($conn->query($sql) == true){
-            header('Refresh: 0;url=product-detail.php?id='.$pdid.'&added=1');
+            header('Refresh: 0;url=product-detail.php?id='.$pdid.'&popup=1');
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }

@@ -3,10 +3,10 @@
 	<div class="popup-inner">
 		<div class="overlay-layer"></div>
     	<div class="search-form">
-        	<form method="post" action="templateshub.net">
+        	<form method="get" action="shop.php">
             	<div class="form-group">
                 	<fieldset>
-                        <input type="search" class="form-control" name="search-input" value="" placeholder="Tìm ở đây..." required >
+                        <input type="search" class="form-control" name="search" value="" placeholder="Bạn muốn tìm gì..." required >
                         <input type="submit" value="Tìm" class="theme-btn">
                     </fieldset>
                 </div>
@@ -23,7 +23,7 @@
                         $result_all = $result -> fetch_all(MYSQLI_ASSOC);
                         foreach ($result_all as $row) {
                 ?>
-                <li><a href="#"><?php echo $row["ITR_NAME"] ?></a></li>
+                <li><a href="shop.php?room=<?php echo $row["ITR_ID"] ?>&rname=<?php echo $row["ITR_NAME"] ?>"><?php echo $row["ITR_NAME"] ?></a></li>
                 <?php
                         }
                     }

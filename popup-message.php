@@ -1,10 +1,10 @@
 <?php
-if(isset($_GET['added'])){
+if(isset($_GET['popup'])){
     $message = $_SESSION['message'];
     ?>
     <div id="popup" class="popup">
         <div class="popup-content" style="margin-bottom: -15px;">
-            <p><?php echo $message ?> <i style="color: rgb(255, 115, 0); margin-left: 10px; " class="fas fa-check-circle fa-lg"></i></p>
+            <p><?php echo $message ?> <i style="color: #dfb162; margin-left: 10px; " class="fas fa-check-circle fa-lg"></i></p>
         </div>
     </div>
     <style>
@@ -16,7 +16,7 @@ if(isset($_GET['added'])){
             transform: translate(-50%, -50%);
             color: black;
             background-color: white;
-            padding: 40px 70px;
+            padding: 30px 60px;
             border-radius: 5px;
             transition: opacity 3.5s;
             z-index: 99999;
@@ -25,6 +25,7 @@ if(isset($_GET['added'])){
 
         .popup-content {
             text-align: center;
+            font-size: 30px;
         }
     </style>
     <script>

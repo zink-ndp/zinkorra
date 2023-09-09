@@ -131,7 +131,7 @@
                                 $price = "fill-active";
                                 $newest="fill-item";
                                 $hot="fill-item";
-                                $type="fill-item;";
+                                $type="fill-item";
                                 break;
                             case 'type':
                                 $price = "fill-item";
@@ -254,7 +254,22 @@
                     if (isset($_GET['typeFill'])){
                         $sql .= " AND TY_ID = {$_GET['typeFill']}";
                     }
-
+                    $search_result="";
+                    if (isset($_GET['room']) && isset($_GET['rname'])){
+                        $sql .= " AND ITR_ID = {$_GET['room']}";
+                        $search_result = "Kết quả tìm kiếm cho từ khoá: ".$_GET['rname'];
+                    }
+                    if (isset($_GET['search'])){
+                        $sql .= " AND PD_NAME like '%{$_GET['search']}%'";
+                        $search_result = "Kết quả tìm kiếm cho từ khoá: ".$_GET['search'];
+                    }
+                ?>
+                    <div class="col-12" style="text-align: center; margin-bottom: 15px;">
+                        <span style="font-size: 20px;">
+                            <?php echo $search_result ?>
+                        </span>
+                    </div>
+                <?php
                     $sql = $sql." LIMIT $offset, $productsPerPage";
                     $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
@@ -262,6 +277,7 @@
                         $result_all = $result -> fetch_all(MYSQLI_ASSOC);
                         foreach ($result_all as $row) {
                 ?>
+               
 				<!--Shop Item-->
                 <div class="shop-item col-lg-3 col-md-4 col-sm-12">
                 	<div class="inner-box">

@@ -10,7 +10,7 @@
 <!--Search Popup-->
 <?php
 	require "search-popup.php";
-    require "added-popup.php";
+    require "popup-message.php";
 ?>
 
 <div class="page-wrapper">
