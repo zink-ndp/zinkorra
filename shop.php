@@ -57,6 +57,9 @@
 	
 	 <!--Page Title-->
      <section class="page-title" style="background-image:url(images/background/5.jpg)">
+        <div class="auto-container">
+        	<h2>Sản phẩm</h2>
+        </div>
     </section>
     <!--End Shop Features Section-->
 	<!--Products Section-->
@@ -67,14 +70,162 @@
     <section class="shop-section">
     	<div class="auto-container">
         	<!--Sec Title-->
-            <div class="title-box">
-            	<h2>Tất cả sản phẩm</h2>
+            <style>
+                /* CSS để tạo giao diện */
+                .shop-fill {
+                    display: flex;
+                    justify-content: space-between; /* Các phần tử con nằm ở hai bên cùng */
+                    align-items: center; /* Căn giữa theo chiều dọc */
+                    width: 100%; /* Độ rộng của container */
+                    background-color: #f0f0f0;
+                    padding: 10px; /* Khoảng cách trong container */
+                }
+
+                .fill {
+                    width: 100%; /* Độ rộng của hai div con */
+                    padding: 10px; /* Khoảng cách trong hai div con */
+                    display: flex;
+                    flex-direction: row;
+                }
+
+                .fill-item {
+                    margin: 0 10px;
+                    background-color: white;
+                    color: #dfb162;
+                    padding: 7px 13px;
+                }
+
+                .fill-item:hover {
+                    background-color: #dfb162;
+                    color: white;
+                }
+
+                .fill-active {
+                    margin: 0 10px;
+                    padding: 7px 13px;
+                    background-color: #dfb162 !important;
+                    color: white !important;
+                }
+            </style>
+            <div class="shop-fill mb-5">
+                <?php
+                    $newest="fill-active";
+                    $hot="fill-item";
+                    $price="fill-item";
+                    $type="fill-item";
+                    if (isset($_GET['active'])){
+                        switch ($_GET['active']) {
+                            case 'newest':
+                                $newest = "fill-active";
+                                $hot="fill-item";
+                                $price="fill-item";
+                                $type="fill-item";
+                                break;
+                            case 'hot':
+                                $hot = "fill-active";
+                                $newest="fill-item";
+                                $price="fill-item";
+                                $type="fill-item";
+                                break;
+                            case 'price':
+                                $price = "fill-active";
+                                $newest="fill-item";
+                                $hot="fill-item";
+                                $type="fill-item;";
+                                break;
+                            case 'type':
+                                $price = "fill-item";
+                                $newest="fill-item";
+                                $hot="fill-item";
+                                $type="fill-active";
+                                break;
+                            }
+                        }
+                ?>
+                <div class="fill">
+                    <span style="margin-top: 7px">
+                        Sắp xếp theo: 
+                    </span>
+                    <a href="?active=newest">
+                        <div class="<?php echo $newest ?>" style="margin-left: 30px !important;">
+                            Mới nhất
+                        </div>
+                    </a>
+                    <a href="?active=hot">
+                        <div class="<?php echo $hot ?>">
+                            Bán chạy
+                        </div>
+                    </a>
+                    <!-- ------ -->
+                    <?php
+                        $defaultPrice="selected";
+                        $htl="";
+                        $lth="";
+                        if (isset($_GET['priceFill'])){
+                            switch ($_GET['priceFill']) {
+                                case 'htl':
+                                    $htl = "selected";
+                                    $defaultPrice="";
+                                    break;
+                                
+                                case 'lth':
+                                    $lth = "selected";
+                                    $defaultPrice="";
+                                    break;
+                                default:
+                                    $defaultPrice="selected";
+                                    break;
+                            }
+                        }
+                    ?>
+                    <form id="priceForm" action="#" method="get">
+                        <select id="priceSelect" name="priceFill" class="<?php echo $price ?>">
+                            <option disabled value="" <?php echo $defaultPrice ?>>Giá</option>
+                            <option value="">Mặc định</option>
+                            <option value="htl" <?php echo $htl ?>>Cao đến thấp</option>
+                            <option value="lth" <?php echo $lth ?>>Thấp đến cao</option>
+                        </select>
+                        <input type="hidden" name="active" value="price">
+                    </form>
+                    <script>
+                        document.getElementById("priceSelect").addEventListener("change", function() {
+                            document.getElementById("priceForm").submit();
+                        });
+                    </script>
+                    <!-- ------ -->
+                    <form id="typeForm" action="#" method="get">
+                        <select id="typeSelect" name="typeFill" class="<?php echo $type ?> ">
+                            <option disabled value="">Loại nội thất</option>
+                            <option value="">Mặc định</option>
+                            <?php 
+                                $sqlType = "select * from type";
+                                $rsType = $conn->query($sqlType);
+                                if ($rsType->num_rows > 0) {
+                                    $rsType = $conn->query($sqlType);
+                                    $rsType_all = $rsType -> fetch_all(MYSQLI_ASSOC);
+                                    foreach ($rsType_all as $row) {
+                                        ?>
+                                            <option value="<?php echo $row['TY_ID'] ?>"><?php echo $row['TY_NAME'] ?></option>
+                                        <?php
+                                    }
+                                }
+                            ?>
+                            
+                        <input type="hidden" name="active" value="type">
+                    </select>
+                    </form>
+                    <script>
+                        document.getElementById("typeSelect").addEventListener("change", function() {
+                            document.getElementById("typeForm").submit();
+                        });
+                    </script>
+                </div>
             </div>
             
             <div class="row clearfix">
                 <?php
                     // Số sản phẩm trên mỗi trang
-                    $productsPerPage = 12;
+                    $productsPerPage = 20;
 
                     // Xác định trang hiện tại từ biến GET
                     $current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -82,7 +233,28 @@
                     // Truy vấn lấy dữ liệu sản phẩm từ cơ sở dữ liệu
                     $offset = ($current_page - 1) * $productsPerPage;
 
-                    $sql = "SELECT * FROM products";
+                    $sql = "SELECT * FROM products where 1";
+
+                    if (isset($_GET['priceFill'])){
+                        switch ($_GET['priceFill']) {
+                            case 'htl':
+                                $sql .= " ORDER BY PD_PRICE DESC";
+                                break;
+
+                            case 'lth':
+                                $sql .= " ORDER BY PD_PRICE ASC";
+                                break;
+                            
+                            default:
+                                # code...
+                                break;
+                        }
+                    }
+
+                    if (isset($_GET['typeFill'])){
+                        $sql .= " AND TY_ID = {$_GET['typeFill']}";
+                    }
+
                     $sql = $sql." LIMIT $offset, $productsPerPage";
                     $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
@@ -91,7 +263,7 @@
                         foreach ($result_all as $row) {
                 ?>
 				<!--Shop Item-->
-                <div class="shop-item col-lg-4 col-md-5 col-sm-12">
+                <div class="shop-item col-lg-3 col-md-4 col-sm-12">
                 	<div class="inner-box">
                     	<div class="image-container">
                         	<a href="product-detail.php?id=<?php echo $row["PD_ID"] ?>"><img class="fit-image" src="images/products/<?php echo $row["PD_PIC"] ?>" alt="" /></a>
@@ -104,8 +276,8 @@
                             <!-- <div class="tag-banner">New</div> -->
                         </div>
                         <div class="lower-content">
-                        	<h3><a href="product-detail.php?id=<?php echo $row["PD_ID"] ?>"><?php echo $row["PD_NAME"] ?></a></h3>
-                            <div class="price"><?php echo number_format($row["PD_PRICE"]) ?> VND</div>
+                        	<h3 style="font-size: 14px;"><a href="product-detail.php?id=<?php echo $row["PD_ID"] ?>"><?php echo $row["PD_NAME"] ?></a></h3>
+                            <div class="price mt-n2" style="font-size: 18px !important;"><?php echo number_format($row["PD_PRICE"]) ?> VND</div>
                         </div>
                     </div>
                 </div>

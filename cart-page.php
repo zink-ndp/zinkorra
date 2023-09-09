@@ -36,10 +36,11 @@
                     <table class="cart-table">
                         <thead class="cart-header">
                             <tr>
+                            	<th style="text-align: center;" class="col-1"></th>
                             	<th class="col-2">Hình ảnh</th>
                             	<th class="col-3">Tên sản phẩm</th>
                                 <th class="col-2">Đơn giá</th>
-                                <th class="col-2">Số lượng</th>
+                                <th class="col-1">Số lượng</th>
                                 <th class="col-2">Tổng tiền</th>
                                 <th class="col-1">&nbsp;</th>
                             </tr>
@@ -65,6 +66,9 @@
                                         
                             ?>
                         	<tr>
+                                <td style="padding 0 25px !important;" class="prod-column">
+                                    <input style="scale: 1.3 !important;" type="checkbox" aria-label="Checkbox for following text input">
+                                </td>
                                 <td class="prod-column">
                                     <div class="column-box">
                                         <figure class="prod-thumb"><a href="product-detail.php?id=<?php echo $spid ?>"><img style="width: 130%;" src="images/products/<?php echo $s["PD_PIC"] ?>" alt=""></a></figure>
@@ -97,7 +101,7 @@
                 </div>
 
                 <div class="cart-options clearfix">
-                    <div class="pull-left">
+                    <!-- <div class="pull-left">
                         <div class="apply-coupon clearfix">
                             <div class="form-group clearfix">
                                 <input type="text" name="coupon-code" value="" placeholder="Mã giảm giá">
@@ -106,7 +110,7 @@
                                 <button type="button" class="theme-btn coupon-btn">Áp dụng mã</button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="pull-right">
                         <a href="del-all-cart.php" id="showAlertButton" type="button" class="theme-btn cart-btn" style="background-color: white; border: 1px solid #dfb162; color: #dfb162">Xoá tất cả</a>
                         <a href="shop.php" type="button" class="theme-btn cart-btn ms-2">Thêm sản phẩm khác</a>

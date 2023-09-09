@@ -21,10 +21,10 @@
             $sql = "insert into cart_detail values ($cid, $pdid, $quant)";
             $message = "Thêm giỏ hàng thành công";
         }
+        $_SESSION['message'] = $message;
 
         if($conn->query($sql) == true){
-            echo "<script type='text/javascript'>alert('$message');</script>";
-            header('Refresh: 0;url=product-detail.php?id='.$pdid);
+            header('Refresh: 0;url=product-detail.php?id='.$pdid.'&added=1');
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }

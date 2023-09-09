@@ -9,7 +9,8 @@
 
 <!--Search Popup-->
 <?php
-	include "search-popup.php";
+	require "search-popup.php";
+    require "added-popup.php";
 ?>
 
 <div class="page-wrapper">

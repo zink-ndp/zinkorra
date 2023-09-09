@@ -37,6 +37,7 @@
                         <div class="col-12">
                             <input type="file" name="img" id="imageInput" accept="image/*">
                         </div>
+
                         <div class="col-4"></div>
                         <div class="col-4 image-container mt-2" style="border: none !important;" id="imagePreview"></div>
                         <div class="col-4"></div>
