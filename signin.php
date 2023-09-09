@@ -12,22 +12,11 @@
 
     <header class="main-header header-style-one">
         <!--Header Top-->
-        <?php
+    <?php
 			require 'head-top.php';
-		?>
-        <!-- End Header Top -->
-
-        <!-- Header Upper -->
-        <?php
 			require 'head-upper.php';
-		?>
-        <!--End Header Upper-->
-
-    	<!-- Mobile Menu  -->
-        <?php
 			require 'mobile-menu.php';
 		?>
-        <!-- End Mobile Menu -->
 
     </header>
     <!-- End Main Header -->
@@ -45,21 +34,21 @@
                   <p class="mb-0">Chào mừng bạn</p>
                 </div>
                 <div class="card-body">
-                  <form role="form" method="post" action="log.php">
+                  <form id="signForm" role="form" method="post" action="sign.php">
                     <div class="mb-3">
                       <input required type="text" name="name" class="form-control form-control-lg" placeholder="Nhập họ và tên của bạn" aria-label="Name" id="Name">
                     </div>
                     <div class="mb-3">
-                      <input required type="tel" name="phone" class="form-control form-control-lg" placeholder="Nhập số điện thoại" aria-label="Password" id="passInput">
+                      <input required type="tel" name="phone" class="form-control form-control-lg" placeholder="Nhập số điện thoại" aria-label="Password" id="">
                     </div>
                     <div class="mb-3">
-                      <input required type="email" name="email" class="form-control form-control-lg" placeholder="Nhập Email" aria-label="Username">
+                      <input required type="email" name="email" class="form-control form-control-lg" placeholder="Nhập Email" aria-label="Username" id="email">
                     </div>
                     <div class="mb-3">
                       <input required type="password" name="pass" class="form-control form-control-lg" placeholder="Nhập Mật khẩu" aria-label="Password" id="passInput">
                     </div>
                     <div class="mb-3">
-                      <input required type="password" name="repass" class="form-control form-control-lg" placeholder="Nhập lại Mật khẩu" aria-label="Password" id="passReput">
+                      <input required type="password" name="repass" class="form-control form-control-lg" placeholder="Nhập lại Mật khẩu" aria-label="RePassword" id="passReput">
                     </div>
                     <div class="mb-3 mt-n2 d-flex justify-content-center">                      
                       <button class="bg_white" type="button" id="showPasswordBtn">
@@ -71,23 +60,35 @@
                       <label class="form-check-label" for="rememberMe">Remember me</label>
                     </div> -->
                     <div class="text-center">
-                      <button type="submit" class="theme-btn btn-style-four w-100 mt-n1 mb-0"><span class="txt">Đăng nhập</span></button>
+                      <button onclick="checkRepass()" type="button" class="theme-btn btn-style-four w-100 mt-n1 mb-0"><span class="txt">Đăng kí ngay</span></button>
                     </div>
                     
                   </form>
                 </div>
                 <script>
-                  const passInput = document.getElementById('passInput');
-                  const showPasswordBtn = document.getElementById('showPasswordBtn');
+                  const signForm =document.getElementById('signForm')
+                  const pw =document.getElementById('passInput')
+                  const rpw =document.getElementById('passReput')
+                  const showPasswordBtn = document.getElementById('showPasswordBtn')
                   showPasswordBtn.addEventListener('click', () => {
-                      if (passInput.type === 'password') {
-                          passInput.type = 'text';
-                          showPasswordBtn.innerHTML = 'Ẩn mật khẩu <i class="fa fa-eye-slash" aria-hidden="true"></i>';
+                      if (rpw.type == 'password') {
+                          pw.type = 'text'
+                          rpw.type = 'text'
+                          showPasswordBtn.innerHTML = 'Ẩn mật khẩu <i class="fa fa-eye-slash" aria-hidden="true"></i>'
                       } else {
-                          passInput.type = 'password';
-                          showPasswordBtn.innerHTML = 'Hiện mật khẩu <i class="fa fa-eye" aria-hidden="true"></i>';
+                          pw.type = 'password'
+                          rpw.type = 'password'
+                          showPasswordBtn.innerHTML = 'Hiện mật khẩu <i class="fa fa-eye" aria-hidden="true"></i>'
                       }
                   });
+
+                  function checkRepass() {
+                    if(pw.value !== rpw.value){
+                      alert("Mật khẩu nhập lại không đúng!")
+                    } else {
+                      signForm.submit()
+                    }
+                  }
                 </script>
 
                 <!-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
