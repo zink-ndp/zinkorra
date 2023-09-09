@@ -263,6 +263,10 @@
                         $sql .= " AND PD_NAME like '%{$_GET['search']}%'";
                         $search_result = "Kết quả tìm kiếm cho từ khoá: ".$_GET['search'];
                     }
+                    $index = strpos($sql, "products");
+                    if ($index !== false) {
+                        $pagivation = substr($sql, $index + strlen("products"));
+                    }
                 ?>
                     <div class="shop-pagination">
                         <ul class="clearfix">
@@ -276,7 +280,7 @@
                             ?>
                             <?php
                                     // Tính số trang dựa trên tổng số sản phẩm
-                                $q = "SELECT COUNT(*) AS total FROM products";
+                                $q = "SELECT COUNT(*) AS total FROM products".$pagivation;
                                 $rs = $conn->query($q);
 
                                 if ($rs->num_rows > 0) {
@@ -351,7 +355,7 @@
                     ?>
                     <?php
                             // Tính số trang dựa trên tổng số sản phẩm
-                        $q = "SELECT COUNT(*) AS total FROM products";
+                        $q = "SELECT COUNT(*) AS total FROM products".$pagivation;
                         $rs = $conn->query($q);
 
                         if ($rs->num_rows > 0) {
