@@ -88,6 +88,14 @@
 	</section>
 	<!-- End Banner Section -->
 	
+	<style>
+		.span-des{
+			max-width: 100%; 
+			white-space: nowrap;
+			overflow: hidden; 
+			text-overflow: ellipsis; 
+		}
+	</style>
 	<!-- Services Section -->
 	<section class="services-section" id="services-section">
 		<div class="auto-container">
@@ -98,7 +106,12 @@
 			
 			<div class="row clearfix">
 				<?php
-					$sql = "select * from products order by PD_ID DESC limit 4";
+					$sql = "select pd.*, sum(bd.PD_QUANT) as pdquant, count(distinct bd.B_ID) as bquant 
+							from products pd
+							join bill_detail bd on pd.PD_ID = bd.PD_ID
+							group by pd.PD_ID, PD.PD_NAME
+							order by pdquant desc
+							limit 4;";
 					$result = $conn->query($sql);
 					if ($result->num_rows > 0) {
 						$result = $conn->query($sql);
@@ -112,9 +125,10 @@
 							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><img class="fit-image" src="images/products/<?php echo $row['PD_PIC'] ?>" alt="" /></a>
 						</div>
 						<div class="lower-content">
-							<h5><a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><?php echo $row['PD_NAME'] ?></a></h5><br>
-							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>" style="font-size: 22px; color: white;"><?php echo number_format($row['PD_PRICE'])?> đ</a>
-							<div class=""><?php echo $row['PD_DESCRI'] ?></div>
+							<h5 style="height: 40px;"><a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><?php echo $row['PD_NAME'] ?></a></h5><br>
+							<h5 style="font-size: 18px"><a href="">Đã bán: <?php echo $row['pdquant'] ?></a></h5>
+							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>" style="font-size: 20px; color: white;"><?php echo number_format($row['PD_PRICE'])?> đ</a>
+							<div class="span-des"><?php echo $row['PD_DESCRI'] ?></div>
 							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>" class="read-more">Xem thêm</a>
 						</div>
 					</div>
@@ -151,9 +165,9 @@
 							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><img class="fit-image" src="images/products/<?php echo $row['PD_PIC'] ?>" alt="" /></a>
 						</div>
 						<div class="lower-content">
-							<h5><a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><?php echo $row['PD_NAME'] ?></a></h5><br>
-							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>" style="font-size: 22px; color: white;"><?php echo number_format($row['PD_PRICE'])?> đ</a>
-							<div class=""><?php echo $row['PD_DESCRI'] ?></div>
+							<h5 style="height: 40px;"><a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><?php echo $row['PD_NAME'] ?></a></h5><br>
+							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>" style="font-size: 20px; color: white;"><?php echo number_format($row['PD_PRICE'])?> đ</a>
+							<div class="span-des"><?php echo $row['PD_DESCRI'] ?></div>
 							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>" class="read-more">Xem thêm</a>
 						</div>
 					</div>

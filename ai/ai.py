@@ -9,7 +9,7 @@ from DeepImageSearch import Load_Data, Search_Setup
 
 dl = Load_Data()
 
-img_list = dl.from_folder(folder_list = ["input"])
+img_list = dl.from_folder(folder_list = ["../images/products"])
 
 # For Faster Serching we need to index Data first, After Indexing all the meta data stored on the local path
 # vgg19

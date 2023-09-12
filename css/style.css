@@ -153,6 +153,16 @@ textarea{
     box-sizing: border-box;
 }
 
+.search-panel{
+	display: flex;
+	border: 1px solid white;
+	border-radius: 15px;
+	padding: 50px;
+	margin: 50px 200px;
+	justify-content: center;
+	align-content: center;
+}
+
 button{
 	outline: none !important;
 	cursor: pointer;
