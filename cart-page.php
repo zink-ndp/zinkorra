@@ -102,16 +102,18 @@
                 
 
                 <div class="cart-options clearfix">
-                    <!-- <div class="pull-left">
+                    <div class="pull-left">
                         <div class="apply-coupon clearfix">
-                            <div class="form-group clearfix">
-                                <input type="text" name="coupon-code" value="" placeholder="Mã giảm giá">
-                            </div>
-                            <div class="form-group clearfix">
-                                <button type="button" class="theme-btn coupon-btn">Áp dụng mã</button>
-                            </div>
+                            <form action="coupon-apply.php" method="post">
+                                <div class="form-group clearfix">
+                                    <input type="text" name="coupon" value="" placeholder="Mã giảm giá">
+                                </div>
+                                <div class="form-group clearfix">
+                                    <button type="submit" class="theme-btn coupon-btn">Áp dụng mã</button>
+                                </div>
+                            </form>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="pull-right">
                         <a id="showAlertButton" type="button" class="theme-btn cart-btn" style="background-color: white; border: 1px solid #dfb162; color: #dfb162">Xoá tất cả</a>
                         <a href="shop.php" type="button" class="theme-btn cart-btn ms-2">Thêm sản phẩm khác</a>
@@ -179,6 +181,22 @@
                             <ul class="totals-table">
                                 <li><h3>Tổng giỏ hàng</h3></li>
                                 <li class="clearfix total"><span class="col">Tổng tiền</span><span class="col price"><?php echo number_format($total) ?> đ</span></li>
+                                <?php
+                                    if (isset($_GET['coupon'])){
+                                        $code = $_GET['coupon'];
+                                        $cp = $_GET['sale'];
+                                        ?>
+                                            <li class="clearfix total">
+                                                <span class="col">Tiền giảm</span>
+                                                <span class="col price"><?php echo $cp .'% - '. number_format($total*$cp*0.01) ?> đ <p class="mb-n1" style="font-size: 12px;">Mã: <?php echo $code ?></p></span>
+                                            </li>                                    
+                                            <?php
+                                        $total -= $total*$cp*0.01;
+                                    } else {
+                                        echo '<li class="clearfix total"><span class="col">Giảm giá</span><span class="col price">0</span></li>';                                    
+                                    }
+                                ?>
+                                <li class="clearfix total"><span class="col">Thành tiền</span><span class="col price"><?php echo number_format($total) ?> đ</span></li>
                                 <li class="clearfix total"><span class="col">Phương thức</span>
                                     <select required name="payment" id="">
                                         <?php
