@@ -1,6 +1,7 @@
 <?php
 if(isset($_GET['popup'])){
     $message = $_SESSION['message'];
+    if ($message != ''){
     ?>
     <div id="popup" class="popup">
         <div class="popup-content" style="margin-bottom: -15px;">
@@ -57,5 +58,7 @@ if(isset($_GET['popup'])){
     </script>
 
     <?php
+    }
+    $_SESSION['message'] = '';
 }
 ?>

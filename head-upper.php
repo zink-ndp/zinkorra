@@ -49,7 +49,7 @@
                                     <?php
                                         if (isset($_SESSION["id"])){
                                             ?>
-                                                <li> <a href="bill.php">Hoá đon</a>  </li>
+                                                <li> <a href="bill.php">Đơn hàng</a>  </li>
                                                 <li class="dropdown"><a href="myaccount.php"></span>Hi, <?php echo $_SESSION["lname"] ?></a>
                                                     <ul>
                                                         <li><a href="cus-info.php">Thông tin cá nhân</a></li>

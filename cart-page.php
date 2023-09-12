@@ -37,23 +37,23 @@
                 ?>
                 <div class="table-outer">
                     <table class="cart-table">
+                        
                         <thead class="cart-header">
                             <tr>
-                            	<th class="col-2">Hình ảnh</th>
-                            	<th class="col-3">Tên sản phẩm</th>
+                                <th class="col-2">Hình ảnh</th>
+                                <th class="col-3">Tên sản phẩm</th>
                                 <th class="col-2">Đơn giá</th>
                                 <th class="col-1">Số lượng</th>
                                 <th class="col-2">Tổng tiền</th>
                                 <th class="col-1">&nbsp;</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             <?php
 
                                 $cid = $_SESSION["id"];
                                 $sl = 0;
-                                $sql = "select PD_ID, PD_QUANT from cart_detail where CTM_ID = {$cid}";
+                                $sql = "select PD_ID, PD_QUANT from cart_detail where CTM_ID = $cid";
                                 $rs = $conn->query($sql);
                                 $total = 0;
                                 foreach ($rs as $sp) {
@@ -61,12 +61,13 @@
                                     $query = "select p.PD_NAME, p.PD_PRICE, p.PD_PIC
                                     from products p 
                                     join cart_detail cd on cd.PD_ID = p.PD_ID
-                                    where p.PD_ID = $spid";
+                                    join custommer cm on cm.CTM_ID = cd.CTM_ID
+                                    where p.PD_ID = $spid and cd.CTM_ID = $cid";
                                     $result = $conn->query($query);
                                     foreach ($result as $s) {
                                         $sl += $sp["PD_QUANT"];
                                         
-                            ?>
+                                        ?>
                         	<tr>
                                 <td class="prod-column">
                                     <div class="column-box">
@@ -115,7 +116,11 @@
                         </div>
                     </div>
                     <div class="pull-right">
-                        <a id="showAlertButton" type="button" class="theme-btn cart-btn" style="background-color: white; border: 1px solid #dfb162; color: #dfb162">Xoá tất cả</a>
+                        <?php
+                            if ($sl>0){
+                                echo '<a id="showAlertButton" type="button" class="theme-btn cart-btn" style="background-color: white; border: 1px solid #dfb162; color: #dfb162">Xoá tất cả</a>';
+                            }
+                        ?>
                         <a href="shop.php" type="button" class="theme-btn cart-btn ms-2">Thêm sản phẩm khác</a>
                     </div>
                     <script>
@@ -133,93 +138,118 @@
 
                 </div>
 
-                <div class="row clearfix">
-
-					<div class="column col-lg-7 col-md-5 col-sm-12">
-                        <!--Totals Table-->
-                        <ul class="totals-table">
-                            <li><h3>Thông tin giao hàng</h3></li>
-                            <li class="clearfix total">
-                                <span class="col">Tên khách hàng *</span>
-                                <input required type="text" name="name" id="" class="col" value="<?php echo $_SESSION['name'] ?>">
-                            </li>
-                            <li class="clearfix total">
-                                <span class="col">Số điện thoại *</span>
-                                <input required type="text" name="name" id="" class="col" value="<?php echo $_SESSION['phone'] ?>">
-                            </li>
-                            <li class="clearfix total">
-                                <span class="col">Địa chỉ *</span>
-                                <div class="col">
-                                    <style>
-                                        .address{
-                                            width: 70%;
+                <?php
+                    if ($sl>0){
+                ?>                
+                    <form action="checkout.php" method="post" id="checkoutForm">
+                        <div class="row clearfix">
+                            <div class="column col-lg-7 col-md-5 col-sm-12">
+                                <!--Totals Table-->
+                                <ul class="totals-table">
+                                    <li><h3>Thông tin giao hàng</h3></li>
+                                    <li class="clearfix total">
+                                        <span class="col">Tên khách hàng *</span>
+                                        <input required type="text" name="name" id="" class="col" value="<?php echo $_SESSION['name'] ?>">
+                                    </li>
+                                    <li class="clearfix total">
+                                        <span class="col">Số điện thoại *</span>
+                                        <input required type="text" name="phone" id="" class="col" value="<?php echo $_SESSION['phone'] ?>">
+                                    </li>
+                                    <li class="clearfix total">
+                                        <span class="col">Địa chỉ *</span>
+                                        <div class="col">
+                                            <style>
+                                                .address{
+                                                    width: 70%;
+                                                }
+                                            </style>
+                                            <select class="address" require name="calc_shipping_provinces" style="color: grey;">
+                                                <option selected disabled value="">Tỉnh / Thành phố</option>
+                                            </select>
+                                            <select class="address" require name="calc_shipping_district" style="color: grey;">
+                                                <option selected disabled value="">Quận / Huyện</option>
+                                            </select>
+                                            <input class="billing_address_1" name="tinh" type="hidden" value="">
+                                            <input class="billing_address_2" name="huyen" type="hidden" value="">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix total">
+                                        <span class="col">Ghi chú *</span>
+                                        <input required type="text" name="note" id="" class="col" value="" placeholder="Số nhà, tên đường, ...">
+                                    </li>
+                                    <li class="clearfix total">
+                                        <span style="color: red;">Vui lòng kiểm tra kỹ thông tin và không để trống ô chứa dấu *</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="column col-lg-5 col-md-7 col-sm-12">
+                                <!--Totals Table-->
+                                <ul class="totals-table">
+                                    <li><h3>Tổng giỏ hàng</h3></li>
+                                    <li class="clearfix total"><span class="col">Tổng tiền</span><span class="col price"><?php echo number_format($total) ?> đ</span></li>
+                                    <?php
+                                        if (isset($_GET['coupon'])){
+                                            $code = $_GET['coupon'];
+                                            $cp = $_GET['sale'];
+                                            ?>
+                                                <li class="clearfix total">
+                                                    <span class="col">Tiền giảm</span>
+                                                    <span class="col price"><?php echo $cp .'% - '. number_format($total*$cp*0.01) ?> đ <p class="mb-n1" style="font-size: 12px;">Mã: <?php echo $code ?></p></span>
+                                                </li>                                    
+                                                <?php
+                                            $total -= $total*$cp*0.01;
+                                            echo '<input type="hidden" name="sale" value="'.$code.'">';
+                                        } else {
+                                            echo '<li class="clearfix total"><span class="col">Giảm giá</span><span class="col price">0</span></li>';                                    
                                         }
-                                    </style>
-                                    <select class="address" require name="calc_shipping_provinces" required="">
-                                        <option value="">Tỉnh / Thành phố</option>
-                                    </select>
-                                    <select class="address" require name="calc_shipping_district" required="">
-                                        <option value="">Quận / Huyện</option>
-                                    </select>
-                                    <input class="billing_address_1" name="" type="hidden" value="">
-                                    <input class="billing_address_2" name="" type="hidden" value="">
-                                </div>
-                            </li>
-                            <li class="clearfix total">
-                                <span class="col">Ghi chú *</span>
-                                <input required type="text" name="name" id="" class="col" value="" placeholder="Số nhà, tên đường, ...">
-                            </li>
-                            <li class="clearfix total">
-                                <span style="color: red;">Vui lòng kiểm tra kỹ thông tin và không để trống ô chứa dấu *</span>
-                            </li>
-                        </ul>
-					</div>
-					
-                    <div class="column col-lg-5 col-md-7 col-sm-12">
-                        <form action="checkout.php" method="get">
-                            <!--Totals Table-->
-                            <ul class="totals-table">
-                                <li><h3>Tổng giỏ hàng</h3></li>
-                                <li class="clearfix total"><span class="col">Tổng tiền</span><span class="col price"><?php echo number_format($total) ?> đ</span></li>
-                                <?php
-                                    if (isset($_GET['coupon'])){
-                                        $code = $_GET['coupon'];
-                                        $cp = $_GET['sale'];
-                                        ?>
-                                            <li class="clearfix total">
-                                                <span class="col">Tiền giảm</span>
-                                                <span class="col price"><?php echo $cp .'% - '. number_format($total*$cp*0.01) ?> đ <p class="mb-n1" style="font-size: 12px;">Mã: <?php echo $code ?></p></span>
-                                            </li>                                    
+                                    ?>
+                                    <li class="clearfix total"><span class="col">Thành tiền</span><span class="col price"><?php echo number_format($total) ?> đ</span></li>
+                                    <li class="clearfix total"><span class="col">Phương thức</span>
+                                        <select required name="payment" id="">
                                             <?php
-                                        $total -= $total*$cp*0.01;
-                                    } else {
-                                        echo '<li class="clearfix total"><span class="col">Giảm giá</span><span class="col price">0</span></li>';                                    
-                                    }
-                                ?>
-                                <li class="clearfix total"><span class="col">Thành tiền</span><span class="col price"><?php echo number_format($total) ?> đ</span></li>
-                                <li class="clearfix total"><span class="col">Phương thức</span>
-                                    <select required name="payment" id="">
-                                        <?php
-                                            $sql = "SELECT * FROM payment";
-                                            $result = $conn->query($sql);
-                                                if ($result->num_rows > 0) {
+                                                $sql = "SELECT * FROM payment";
                                                 $result = $conn->query($sql);
-                                                $result_all = $result -> fetch_all(MYSQLI_ASSOC);
-                                                foreach ($result_all as $row) {
-                                        ?>
-                                            <option value="<?php echo $row["PM_ID"] ?>"><?php echo $row["PM_NAME"] ?></option>
-                                        <?php }} ?>
-                                    </select>
-                                </li>
-                                <li class="text-right"><button type="submit" class="theme-btn proceed-btn">Thanh toán</button></li>
-                            </ul>
-                        </form>
-					</div>
-				</div>
+                                                    if ($result->num_rows > 0) {
+                                                    $result = $conn->query($sql);
+                                                    $result_all = $result -> fetch_all(MYSQLI_ASSOC);
+                                                    foreach ($result_all as $row) {
+                                            ?>
+                                                <option value="<?php echo $row["PM_ID"] ?>"><?php echo $row["PM_NAME"] ?></option>
+                                            <?php }} ?>
+                                        </select>
+                                    </li>
+                                    <li class="text-right">
+                                        <input type="checkbox" name="confirm" id="confirm" onchange="toggleButton()">
+                                        <span style="color: red">
+                                            Xác nhận thông tin và tiến hành đặt hàng
+                                        </span>
+                                    </li>
+                                    <li class="text-right"><button id="checkout-btn" type="submit" style="background-color: grey" disabled class="theme-btn proceed-btn">Thanh toán</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                <?php
+                    }
+                ?>
 			</div>
 
         </div>
     </section>
+    <script>
+        function toggleButton() {
+        var checkbox = document.getElementById("confirm");
+        var button = document.getElementById("checkout-btn");
+        if (checkbox.checked) {
+            button.style = "";
+            button.disabled = false;
+        } else {
+            button.style = "background-color: grey";
+            button.disabled = true;
+        }
+        }
+    </script>
     <!--End Cart Section-->
 	
 	<?php require 'footer.php' ?>
