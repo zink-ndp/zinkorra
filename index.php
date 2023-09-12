@@ -93,12 +93,12 @@
 		<div class="auto-container">
 			<!-- Title Box -->
 			<div class="title-box">
-				<h2>Sản phẩm mới nhất</h2>
+				<h2>Sản phẩm bán chạy nhất</h2>
 			</div>
 			
 			<div class="row clearfix">
 				<?php
-					$sql = "select * from products order by PD_ID DESC limit 3";
+					$sql = "select * from products order by PD_ID DESC limit 4";
 					$result = $conn->query($sql);
 					if ($result->num_rows > 0) {
 						$result = $conn->query($sql);
@@ -106,14 +106,54 @@
 						foreach ($result_all as $row) {
 				?>
 				<!-- Service Block -->
-				<div class="service-block col-lg-4 col-md-6 col-sm-12">
+				<div class="service-block col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image-container" style="height: 200px !important;">
 							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><img class="fit-image" src="images/products/<?php echo $row['PD_PIC'] ?>" alt="" /></a>
 						</div>
 						<div class="lower-content">
-							<h3><a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><?php echo $row['PD_NAME'] ?></a></h3>
-							<div class="text"><?php echo $row['PD_DESCRI'] ?></div>
+							<h5><a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><?php echo $row['PD_NAME'] ?></a></h5><br>
+							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>" style="font-size: 22px; color: white;"><?php echo number_format($row['PD_PRICE'])?> đ</a>
+							<div class=""><?php echo $row['PD_DESCRI'] ?></div>
+							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>" class="read-more">Xem thêm</a>
+						</div>
+					</div>
+				</div>
+				<?php }} ?>
+				
+			</div>
+			
+		</div>
+	</section>
+	<!-- End Services Section -->
+
+	<!-- Services Section -->
+	<section class="services-section mt-n7" id="services-section">
+		<div class="auto-container">
+			<!-- Title Box -->
+			<div class="title-box">
+				<h2>Sản phẩm mới nhất</h2>
+			</div>
+			
+			<div class="row clearfix">
+				<?php
+					$sql = "select * from products order by PD_ID DESC limit 4";
+					$result = $conn->query($sql);
+					if ($result->num_rows > 0) {
+						$result = $conn->query($sql);
+						$result_all = $result -> fetch_all(MYSQLI_ASSOC);
+						foreach ($result_all as $row) {
+				?>
+				<!-- Service Block -->
+				<div class="service-block col-lg-3 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image-container" style="height: 200px !important;">
+							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><img class="fit-image" src="images/products/<?php echo $row['PD_PIC'] ?>" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							<h5><a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>"><?php echo $row['PD_NAME'] ?></a></h5><br>
+							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>" style="font-size: 22px; color: white;"><?php echo number_format($row['PD_PRICE'])?> đ</a>
+							<div class=""><?php echo $row['PD_DESCRI'] ?></div>
 							<a href="product-detail.php?id=<?php echo $row['PD_ID'] ?>" class="read-more">Xem thêm</a>
 						</div>
 					</div>
@@ -146,7 +186,7 @@
 							</div>
 							<h3><a href="office-interior.html">Nội thất phòng khách</a></h3>
 							<div class="text">Lorem Ipsum is  simply my text of the printing and Ipsum is the Ipsum is simply.</div>
-							<a href="office-interior.html" class="read-more">Xem thêm</a>
+							<a href="shop.php?room=1&rname=Phòng%20khách" class="read-more">Xem thêm</a>
 						</div>
 					</div>
 				</div>
@@ -160,7 +200,7 @@
 							</div>
 							<h3><a href="office-interior.html">Nội thất phòng ngủ</a></h3>
 							<div class="text">Lorem Ipsum is  simply my text of the printing and Ipsum is the Ipsum is simply.</div>
-							<a href="office-interior.html" class="read-more">Xem thêm</a>
+							<a href="shop.php?room=2&rname=Phòng%20ngủ" class="read-more">Xem thêm</a>
 						</div>
 					</div>
 				</div>
@@ -174,7 +214,7 @@
 							</div>
 							<h3><a href="office-interior.html">Nội thất nhà bếp</a></h3>
 							<div class="text">Lorem Ipsum is  simply my text of the printing and Ipsum is the Ipsum is simply.</div>
-							<a href="office-interior.html" class="read-more">Xem thêm</a>
+							<a href="shop.php?room=3&rname=Nhà%20bếp" class="read-more">Xem thêm</a>
 						</div>
 					</div>
 				</div>
@@ -188,7 +228,7 @@
 							</div>
 							<h3><a href="office-interior.html">Thiết bị vệ sinh</a></h3>
 							<div class="text">Lorem Ipsum is  simply my text of the printing and Ipsum is the Ipsum is simply.</div>
-							<a href="office-interior.html" class="read-more">Xem thêm</a>
+							<a href="shop.php?room=4&rname=Nhà%20WC" class="read-more">Xem thêm</a>
 						</div>
 					</div>
 				</div>
@@ -200,9 +240,9 @@
 							<div class="icon-box">
 								<span class="icon"><i class="fas fa-umbrella-beach fa-xs"></i></span>
 							</div>
-							<h3><a href="office-interior.html">Không gian ngoài trời</a></h3>
+							<h3><a href="office-interior.html">Không gian sân vườn</a></h3>
 							<div class="text">Lorem Ipsum is  simply my text of the printing and Ipsum is the Ipsum is simply.</div>
-							<a href="office-interior.html" class="read-more">Xem thêm</a>
+							<a href="shop.php?room=5&rname=Sân%20vườn" class="read-more">Xem thêm</a>
 						</div>
 					</div>
 				</div>
