@@ -16,6 +16,7 @@ if ($result->num_rows > 0) {
   $fullname = explode(' ', $row['CTM_NAME']);
   $lastname = end($fullname);
   $_SESSION["lname"] = $lastname;
+  $_SESSION["phone"] = $row['CTM_PHONE'];
   $_SESSION["email"] = $row['CTM_EMAIL'];
   if($row['CTM_AVT']==null){
     $_SESSION["avt"] = "macdinh.jpg";

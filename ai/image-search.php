@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            background-color: #333333; /* Nền trắng */
+            background-image: url('bg.jpg');
+            background-size: cover;
             margin: 0;
             padding: 0;
             display: flex;
@@ -25,6 +26,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            border-radius: 15px;
         }
 
         .rectangle1 {
@@ -35,33 +37,12 @@
             justify-content: center;
         }
 
-        .preloader {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background-color: #000;
-            border-radius: 50%;
-            margin: 0 5px;
-            animation: preloaderAnimation 0.6s infinite alternate; /* Hiệu ứng anim */
-        }
-
-        @keyframes preloaderAnimation {
-            0% {
-                transform: scale(0.8);
-            }
-            100% {
-                transform: scale(1.3);
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="rectangle">
             <div class="rectangle1">
-                <!-- <div class="preloader"></div>
-                <div class="preloader"></div>
-                <div class="preloader"></div> -->
                 <img style="height: 230px; margin-top: -50px;" src="robot.gif" alt="">
             </div>
             <h3 style="margin-top: -20px;">AI đang xử lý. Vui lòng đợi...</h3>
@@ -89,7 +70,7 @@
     rename($filename, $new_filename);
 
     // system('echo "no" | python ai.py');
-    header("Refresh: 1; url=loading_ai.php");
+    header("Refresh: 0.1; url=loading_ai.php");
 
     
 ?>
