@@ -204,7 +204,11 @@
                                             echo '<li class="clearfix total"><span class="col">Giảm giá</span><span class="col price">0</span></li>';                                    
                                         }
                                     ?>
-                                    <li class="clearfix total"><span class="col">Thành tiền</span><span class="col price"><?php echo number_format($total) ?> đ</span></li>
+                                    <li class="clearfix total">
+                                        <span class="col">Thành tiền</span>
+                                        <span class="col price"><?php echo number_format($total) ?> đ</span>
+                                    </li>
+                                    <input type="hidden" name="total" value="<?php echo $total ?>">
                                     <li class="clearfix total"><span class="col">Phương thức</span>
                                         <select required name="payment" id="">
                                             <?php

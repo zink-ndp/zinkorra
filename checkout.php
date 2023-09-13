@@ -8,9 +8,7 @@
     $huyen = $_POST['calc_shipping_district'];
     $note = $_POST['note'];
     $pay = $_POST['payment'];
-    if (isset($_POST['sale'])){
-        $sale = $_POST['sale'];
-    } else $sale = null;
+    $total = $_POST['total'];
 
     $sql = "select max(B_ID) as maxId from bill";
     $rs = $conn->query($sql);
@@ -18,7 +16,12 @@
     $nextId = $r['maxId']+1;
 
     $diachi = $note.', '.$huyen.', '.$tinh;
-    $sql = "insert into bill values ($nextId, 1, $pay, null, {$_SESSION['id']}, '$sale', sysdate(),'$diachi')";
+    
+    if (isset($_POST['sale'])){
+        $sql = "insert into bill values ($nextId, 1, $pay, null, {$_SESSION['id']}, '{$_POST['sale']}', sysdate(),'$diachi',$total)";
+    } else {
+        $sql = "insert into bill values ($nextId, 1, $pay, null, {$_SESSION['id']}, null, sysdate(),'$diachi',$total)";
+    }
     if ($conn->query($sql)){
         $sql = "select cd.*, pd.PD_ID, pd.PD_NAME, pd.PD_PRICE from cart_detail cd join products pd on pd.PD_ID=cd.PD_ID where cd.CTM_ID={$_SESSION['id']}";
         $rs = $conn->query($sql);
@@ -32,6 +35,8 @@
         $conn->query($del_cart);
         $_SESSION['message'] = "Đã đặt hàng thành công";
         header('Location: cart-page.php?popup=1');
+    } else {
+        echo $sql;
     }
 
 ?>
