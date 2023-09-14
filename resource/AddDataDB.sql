@@ -22,10 +22,10 @@ INSERT INTO `payment` VALUES (2,"Chuyển khoản ngân hàng");
 INSERT INTO `payment` VALUES (3,"Paypal");
 INSERT INTO `payment` VALUES (4,"Visa/Mastercard");
 
-INSERT INTO `status` VALUES (1,"Đợi xác nhận");
-INSERT INTO `status` VALUES (2,"Đang chuẩn bị");
-INSERT INTO `status` VALUES (3,"Đang giao hàng");
-INSERT INTO `status` VALUES (4,"Hoàn thành");
+INSERT INTO `status` VALUES (1,"Chờ xác nhận");
+INSERT INTO `status` VALUES (2,"Đang giao hàng");
+INSERT INTO `status` VALUES (3,"Hoàn thành");
+INSERT INTO `status` VALUES (4,"Đã huỷ");
 
 INSERT INTO `staff` VALUES (1,1,"Nguyễn Đỗ Phúc Vinh","m","0377899959","ndpvinh@gmail.com","ndpvinh",null);
 INSERT INTO `staff` VALUES (2,2,"Nguyễn Thị Xinh","m","0377235359","ntxinh@gmail.com","ntxinh",null);

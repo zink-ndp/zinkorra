@@ -78,12 +78,12 @@
                     align-items: center; /* Căn giữa theo chiều dọc */
                     width: 100%; /* Độ rộng của container */
                     background-color: #f0f0f0;
-                    padding: 10px; /* Khoảng cách trong container */
+                    padding: 5px; /* Khoảng cách trong container */
                 }
 
                 .fill {
                     width: 100%; /* Độ rộng của hai div con */
-                    padding: 10px; /* Khoảng cách trong hai div con */
+                    padding: 5px; /* Khoảng cách trong hai div con */
                     display: flex;
                     flex-direction: row;
                 }
@@ -122,6 +122,7 @@
                                 $trans = "fill-item";
                                 $finish = "fill-item";
                                 $cancel = "fill-item";
+                                $cond = "";
                                 break;
                             case '2':
                                 $all = "fill-item";
@@ -129,6 +130,7 @@
                                 $trans = "fill-item";
                                 $finish = "fill-item";
                                 $cancel = "fill-item";
+                                $cond = " and b.ST_ID=1";
                                 break;
                             case '3':
                                 $all = "fill-item";
@@ -136,6 +138,7 @@
                                 $trans = "fill-active";
                                 $finish = "fill-item";
                                 $cancel = "fill-item";
+                                $cond = " and b.ST_ID=2";
                                 break;
                             case '4':
                                 $all = "fill-item";
@@ -143,6 +146,7 @@
                                 $trans = "fill-item";
                                 $finish = "fill-active";
                                 $cancel = "fill-item";
+                                $cond = " and b.ST_ID=3";
                                 break;
                             case '5':
                                 $all = "fill-item";
@@ -150,9 +154,10 @@
                                 $trans = "fill-item";
                                 $finish = "fill-item";
                                 $cancel = "fill-active";
+                                $cond = " and b.ST_ID=4";
                                 break;
                             }
-                        }
+                    }
                 ?>
                 <div class="fill row">
                     <div class="col-1"></div>
@@ -201,29 +206,98 @@
                 </div>
             </div>
             
-            <?php
-            
-            $sql = "select * from ";
-
-            switch ($_GET['active']) {
-                case '1':
-                    ?><?php
-                    break;
-                case '2':
-                    ?><?php
-                    break;
-                case '3':
-                    ?><?php
-                    break;
-                case '4':
-                    ?><?php
-                    break;
-                case '5':
-                    ?><?php
-                    break;
+            <div class="row clearfix">
+                <?php
+                
+                    $sql = "select b.*, c.CTM_ID, s.* from bill b
+                            join custommer c on c.CTM_ID=b.CTM_ID
+                            join status s on s.ST_ID=b.ST_ID
+                            where b.CTM_ID = {$_SESSION['id']}";
+                    $sql .= $cond;
+                    $result = $conn->query($sql);
+                    if ($result->num_rows>0) {
+                        $result = $conn->query($sql);
+                        $result_all = $result -> fetch_all(MYSQLI_ASSOC);
+                        foreach ($result_all as $row) {
+                ?>
+                    <div class="container-fluid mt-3" style="box-shadow: 2px 2px 5px grey;">
+                        <div class="row" style="padding: 10px; border-bottom: 1px dashed grey">
+                            <div class="col-lg-9 col-md-7" style="font-weight: bold; font-size: 16px;">
+                                <?php echo date_format(date_create($row['B_DATE']),'d-m-Y') ?>
+                            </div>
+                            <div class="col-lg-3 col-md-5" style="text-align: right; text-transform: uppercase; color: #dfb162">
+                                <?php echo $row['ST_NAME'] ?>
+                            </div>
+                        </div>
+                        <?php
+                            $tt = 0;
+                            $bill_dt = "select bd.*, p.PD_NAME, p.PD_PRICE, p.PD_PIC from bill_detail bd
+                                        join products p on p.PD_ID=bd.PD_ID
+                                        where bd.B_ID={$row['B_ID']}";
+                            $rsbill = $conn->query($bill_dt);
+                            if ($rsbill->num_rows > 0) {
+                                $rsbill = $conn->query($bill_dt);
+                                $rsall = $rsbill -> fetch_all(MYSQLI_ASSOC);
+                                foreach ($rsall as $pd) {
+                                    $tt += $pd['PD_PRICE']*$pd['PD_QUANT'];
+                        ?>
+                        <div class="row" style="padding: 10px; margin: 10px;  border-bottom: 1px dashed grey">
+                            <div class="col-1" style="border: 1px solid #f0f0f0; width: 80px; height: 80px;">
+                                <img style="height: 100%; width: 100%; object-fit: cover" src="images/products/<?php echo $pd['PD_PIC'] ?>" alt="">
+                            </div>
+                            <div class="col-9">
+                                <span style="color: #dfb162; font-size: 16px;"><?php echo $pd['PD_NAME'] ?></span><br>
+                                <span>Số lượng: <?php echo $pd['PD_QUANT'] ?></span><br>
+                            </div>
+                            <div class="col-2 mt-3" style="text-align: right;">
+                                <span style="font-size: 16px; color: black"><?php echo number_format($pd['PD_PRICE']) ?>đ</span>
+                            </div>
+                        </div>
+                        <?php
+                                }
+                            } 
+                        ?>
+                        <div class="row" style="padding: 10px;">
+                            <div class="col-12" style="text-align: right">
+                                <span style="font-size: 15px;">Thành tiền:</span>
+                                <span style="font-size: 19px; font-weight: bold; color: #dfb162"><?php echo number_format($tt) ?>đ</span>
+                            </div>
+                        </div>
+                        <div class="row" style="padding: 25px 15px;">
+                            <div class="col-8">
+                                <?php
+                                    if ($row['ST_ID'] == 3){
+                                        $yourDate = $row['B_DATE']; 
+                                        $interval = new DateInterval('P30D');
+                                        $dateTime = new DateTime($yourDate);
+                                        $dateTime->add($interval);
+                                        $rateDate = $dateTime->format('d-m-Y');
+                                        echo 'Đánh giá sản phẩm trước ngày '.$rateDate;
+                                    } else {
+                                        echo 'Đánh giá sản phẩm sau khi nhận hàng';
+                                    }
+                                ?>
+                            </div>
+                            <div class="col-4" style="text-align: right;">
+                                <?php
+                                    if($row['ST_ID']==3){
+                                ?>
+                                    <button type="button" class="theme-btn btn-style-four" style="padding: 5px 15px !important;"><span class="txt">Đánh giá</span></button>
+                                    <button type="button" class="theme-btn btn-style-four" style="margin-left: 15px !important; padding: 5px 15px !important; background-color: #888 !important"><span class="txt">Mua lại</span></button>
+                                <?php
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                    }
+                } else {
+                    require 'bill-noproduct.php';
                 }
+                ?>
+            </div>
 
-            ?>
 
 		</div>
 	</section>
