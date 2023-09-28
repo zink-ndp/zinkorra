@@ -57,9 +57,34 @@
 	
 	 <!--Page Title-->
      <section class="page-title" style="background-image:url(images/background/5.jpg)">
-        <div class="auto-container">
-        	<h2>Đơn hàng</h2>
+        <div class="auto-container row">
+            <div class="col-7">
+                <h2>Đơn hàng</h2>
+            </div>
+            <div class="col-5">
+                <form method="get" action="bill.php" class="mt-2">
+                    <div class="search-box">
+                        <input type="hidden" name="active" value="1">
+                        <input class="search" type="text" name="search" value="" placeholder="Tìm theo mã hoá đơn, tên sản phẩm, ngày đặt,..." required>
+                        <button type="submit" class="theme-btn btn-style-one"><span class="txt">Tìm</span></button>
+                    </div>
+                </form>
+            </div>
         </div>
+        <style>
+            .search-box{
+                display: flex;
+                flex-direction: row;
+            }
+
+            .search{
+                padding: 0 1rem;
+                width: 100%;
+                color: white;
+                background-color: transparent;
+                border: 1px solid white;
+            }
+        </style>
     </section>
     <!--End Shop Features Section-->
 	<!--Products Section-->
@@ -78,7 +103,7 @@
                     align-items: center; /* Căn giữa theo chiều dọc */
                     width: 100%; /* Độ rộng của container */
                     background-color: #f0f0f0;
-                    padding: 5px; /* Khoảng cách trong container */
+                    padding: 5px 0; /* Khoảng cách trong container */
                 }
 
                 .fill {
@@ -206,39 +231,35 @@
                 </div>
             </div>
 
-            <div class="row clearfix mt-2" >
-                <form method="get" action="#">
-                    <div class="form-group row" style="width: 100% !important; box-shadow: 2px 2px 5px grey;">
-                        <div class="col-11">
-                            
-                            <input style="width: 100% !important" type="email" name="email" value="" placeholder="Tìm theo mã hoá đơn, tên sản phẩm, ..." required>
-                        </div>
-                        <div class="col-1">
-
-                            <button type="submit" class="theme-btn btn-style-one"><span class="txt">Tìm</span></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            
             <div class="row clearfix">
                 <?php
-                
                     $sql = "select b.*, c.CTM_ID, s.* from bill b
                             join custommer c on c.CTM_ID=b.CTM_ID
                             join status s on s.ST_ID=b.ST_ID
                             where b.CTM_ID = {$_SESSION['id']}";
-                    $sql .= $cond;
+                    if (isset($_GET['search'])){
+                        $s = " and (b.B_ID like '%{$_GET['search']}%' or b.B_DATE = '{$_GET['search']}')";
+                        $sql .= $s;
+                        ?>
+                            <div style="text-align: center; width: 100%; font-size: 18px;" class="mt-3">
+                                Kết quả tìm kiếm cho "<?php echo $_GET['search'] ?>"
+                            </div>
+                        <?php
+                    } else {
+                        $sql .= $cond;
+                    }
                     $result = $conn->query($sql);
                     if ($result->num_rows>0) {
                         $result = $conn->query($sql);
                         $result_all = $result -> fetch_all(MYSQLI_ASSOC);
                         foreach ($result_all as $row) {
                 ?>
-                    <div class="container-fluid mt-3" style="box-shadow: 2px 2px 5px grey;">
-                        <div class="row" style="padding: 10px; border-bottom: 1px dashed grey">
+                    
+                    <div class="container-fluid mt-4" style="box-shadow: 2px 2px 5px grey;">
+                        <div class="row" style="padding: 10px; border-bottom: 1px dashed #ededed">
                             <div class="col-lg-9 col-md-7" style="font-weight: bold; font-size: 16px;">
-                                <?php echo date_format(date_create($row['B_DATE']),'d-m-Y') ?>
+                                <!-- <?php echo date_format(date_create($row['B_DATE']),'d-m-Y') ?> -->
+                                <?php echo $row['B_DATE'] ?> _ Mã hoá đơn: <?php echo $row['B_ID'] ?>
                             </div>
                             <div class="col-lg-3 col-md-5" style="text-align: right; text-transform: uppercase; color: #dfb162">
                                 <?php echo $row['ST_NAME'] ?>
@@ -256,7 +277,7 @@
                                 foreach ($rsall as $pd) {
                                     $tt += $pd['PD_PRICE']*$pd['PD_QUANT'];
                         ?>
-                        <div class="row" style="padding: 10px; margin: 10px;  border-bottom: 1px dashed grey">
+                        <div class="row" style="padding: 10px; margin: 10px;  border-bottom: 1px dashed #ededed">
                             <div class="col-1" style="border: 1px solid #f0f0f0; width: 80px; height: 80px;">
                                 <img style="height: 100%; width: 100%; object-fit: cover" src="images/products/<?php echo $pd['PD_PIC'] ?>" alt="">
                             </div>
