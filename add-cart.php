@@ -2,9 +2,8 @@
     require 'connect.php';
 
     if (!isset($_SESSION["id"])){
-        $message = "Vui lòng đăng nhập để thêm vào giỏ hàng!";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-        header('Refresh: 0;url=login.php');
+        $_SESSION['message'] = "Vui lòng đăng nhập để thêm giỏ hàng";
+        header('Refresh: 0;url=login.php?popup=1');
     } else {
         $pdid = $_POST["pdid"];
         $quant = $_POST["quant"];

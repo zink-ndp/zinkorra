@@ -205,6 +205,21 @@
                     <!-- ------ -->
                 </div>
             </div>
+
+            <div class="row clearfix mt-2" >
+                <form method="get" action="#">
+                    <div class="form-group row" style="width: 100% !important; box-shadow: 2px 2px 5px grey;">
+                        <div class="col-11">
+                            
+                            <input style="width: 100% !important" type="email" name="email" value="" placeholder="Tìm theo mã hoá đơn, tên sản phẩm, ..." required>
+                        </div>
+                        <div class="col-1">
+
+                            <button type="submit" class="theme-btn btn-style-one"><span class="txt">Tìm</span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             
             <div class="row clearfix">
                 <?php
