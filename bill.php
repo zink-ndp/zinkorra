@@ -253,13 +253,14 @@
                         $result = $conn->query($sql);
                         $result_all = $result -> fetch_all(MYSQLI_ASSOC);
                         foreach ($result_all as $row) {
+                            $bid = $row['B_ID'];
                 ?>
                     
                     <div class="container-fluid mt-4" style="box-shadow: 2px 2px 5px grey;">
                         <div class="row" style="padding: 10px; border-bottom: 1px dashed #ededed">
                             <div class="col-lg-9 col-md-7" style="font-weight: bold; font-size: 16px;">
                                 <!-- <?php echo date_format(date_create($row['B_DATE']),'d-m-Y') ?> -->
-                                <?php echo $row['B_DATE'] ?> _ Mã hoá đơn: <?php echo $row['B_ID'] ?>
+                                <?php echo $row['B_DATE'] ?> _ Mã hoá đơn: <?php echo $bid ?>
                             </div>
                             <div class="col-lg-3 col-md-5" style="text-align: right; text-transform: uppercase; color: #dfb162">
                                 <?php echo $row['ST_NAME'] ?>
@@ -319,7 +320,9 @@
                                     if($row['ST_ID']==3){
                                 ?>
                                     <button type="button" class="theme-btn btn-style-four" style="padding: 5px 15px !important;"><span class="txt">Đánh giá</span></button>
-                                    <button type="button" class="theme-btn btn-style-four" style="margin-left: 15px !important; padding: 5px 15px !important; background-color: #888 !important"><span class="txt">Mua lại</span></button>
+                                    <a href="rebuy.php?id=<?php echo $bid ?>">
+                                        <button type="button" class="theme-btn btn-style-four" style="margin-left: 15px !important; padding: 5px 15px !important; background-color: #888 !important"><span class="txt">Mua lại</span></button>
+                                    </a>
                                 <?php
                                     }
                                 ?>
