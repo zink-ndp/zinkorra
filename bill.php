@@ -262,7 +262,7 @@
                                 <!-- <?php echo date_format(date_create($row['B_DATE']),'d-m-Y') ?> -->
                                 <?php echo $row['B_DATE'] ?> _ Mã hoá đơn: <?php echo $bid ?>
                             </div>
-                            <div class="col-lg-3 col-md-5" style="text-align: right; text-transform: uppercase; color: #dfb162">
+                            <div class="col-lg-3 col-md-5" style="text-align: right; text-transform: uppercase; color: #dfb162; font-weight: bold;">
                                 <?php echo $row['ST_NAME'] ?>
                             </div>
                         </div>
@@ -282,13 +282,22 @@
                             <div class="col-1" style="border: 1px solid #f0f0f0; width: 80px; height: 80px;">
                                 <img style="height: 100%; width: 100%; object-fit: cover" src="images/products/<?php echo $pd['PD_PIC'] ?>" alt="">
                             </div>
-                            <div class="col-9">
+                            <div class="col-8">
                                 <span style="color: #dfb162; font-size: 16px;"><?php echo $pd['PD_NAME'] ?></span><br>
                                 <span>Số lượng: <?php echo $pd['PD_QUANT'] ?></span><br>
                             </div>
                             <div class="col-2 mt-3" style="text-align: right;">
                                 <span style="font-size: 16px; color: black"><?php echo number_format($pd['PD_PRICE']) ?>đ</span>
                             </div>
+                            <?php
+                                if($row['ST_ID']==3){
+                            ?>
+                                <div class="col-1">
+                                        <button type="button" class="theme-btn btn-style-four mt-2" style="padding: 2px 6px !important; font-size: 10px !important"><span class="txt"><i class="fas fa-star"></i> RATE</span></button>
+                                </div>
+                            <?php
+                                }
+                            ?>
                         </div>
                         <?php
                                 }
@@ -319,7 +328,6 @@
                                 <?php
                                     if($row['ST_ID']==3){
                                 ?>
-                                    <button type="button" class="theme-btn btn-style-four" style="padding: 5px 15px !important;"><span class="txt">Đánh giá</span></button>
                                     <a href="rebuy.php?id=<?php echo $bid ?>">
                                         <button type="button" class="theme-btn btn-style-four" style="margin-left: 15px !important; padding: 5px 15px !important; background-color: #888 !important"><span class="txt">Mua lại</span></button>
                                     </a>
