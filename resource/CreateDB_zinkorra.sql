@@ -155,6 +155,7 @@ create table RATE
    R_TITLE              char(50) not null,
    R_STAR               numeric(8,0) not null,
    R_COMMENT            text not null,
+   R_DATE				date not null
    primary key (R_ID)
 );
 

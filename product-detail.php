@@ -103,7 +103,7 @@
                         
                             <!--Tab Btns-->
                             <ul class="tab-btns tab-buttons clearfix">
-                                <li data-tab="#prod-reviews" class="tab-btn active-btn">Review (2)</li>
+                                <li data-tab="#prod-reviews" class="tab-btn active-btn">Review</li>
                                 <li data-tab="#prod-details" class="tab-btn">Descripton</li>
                                 <!-- <li data-tab="#prod-spec" class="tab-btn">Specification</li> -->
                             </ul>
@@ -119,79 +119,47 @@
                                 
                                 <!--Tab-->
                                 <div class="tab active-tab" id="prod-reviews">
-                                    <!-- <h2 class="title">2 Reviews For win Your Friends</h2> -->
-                                    <!--Reviews Container-->
-                                    <div class="comments-area">
-                                        <!--Comment Box-->
-                                        <div class="comment-box">
-                                            <div class="comment">
-                                                <div class="author-thumb"><img src="images/resource/author-1.jpg" alt=""></div>
-                                                <div class="comment-inner">
-                                                    <div class="comment-info clearfix">Steven Rich – Sep 17, 2016:</div>
-                                                    <div class="rating">
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star light"></span>
+                                    <?php
+                                        $sql = "select * from rate r join custommer c on c.CTM_ID = r.CTM_ID where r.PD_ID = $spid";
+                                        $result = $conn->query($sql);
+                                        if ($result->num_rows>0){
+                                            $result_all = $result -> fetch_all(MYSQLI_ASSOC);
+                                            foreach ($result_all as $row) {
+                                                if ($row['CTM_AVT'] == null) $avt = "default.png";
+                                                else $avt = $row['CTM_AVT'];
+                                    ?>
+                                    
+                                        <!--Reviews Container-->
+                                        <div class="comments-area">
+                                            <!--Comment Box-->
+                                            <div class="comment-box">
+                                                <div class="comment">
+
+                                                    <div class="author-thumb"><img src="images/custommer/<?php echo $avt ?>" alt=""></div>
+                                                    <div class="comment-inner">
+                                                        <div class="comment-info clearfix">
+                                                            <?php echo $row['CTM_NAME'] ?> – <?php echo $row['R_DATE'] ?>: <?php echo $row['R_TITLE'] ?>
+                                                        </div>
+                                                        <div class="rating">
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        </div>
+                                                        <div class="text"><?php echo $row['R_COMMENT'] ?></div>
                                                     </div>
-                                                    <div class="text">How all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.</div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                    <!-- Comment Form -->
-                                    <div class="shop-comment-form">	
-                                        <h2>Add Your Review</h2>
-                                        <div class="rating-box">
-                                            <div class="text"> Your Rating:</div>
-                                            <div class="rating">
-                                                <a id="astar1" href="#"><span class="fa fa-star"></span></a>
-                                            </div>
-                                            <div class="rating">
-                                                <a id="astar2" href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
-                                            </div>
-                                            <div class="rating">
-                                                <a id="astar3" href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
-                                            </div>
-                                            <div class="rating">
-                                                <a id="astar4" href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
-                                            </div>
-                                            <div class="rating">
-                                                <a id="astar5" href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
-                                            </div>
-                                        </div>
-                                        <form method="post" action="templateshub.net">
-                                            <div class="row clearfix">
-                                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                                    <label>First Name *</label>
-                                                    <input type="text" name="username" placeholder="" required>
-                                                </div>
-                                                
-                                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                                    <label>Last Name*</label>
-                                                    <input type="email" name="email" placeholder="" required>
-                                                </div>
-                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                                    <label>Email*</label>
-                                                    <input type="text" name="number" placeholder="" required>
-                                                </div>
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
-                                                    <label>Your Comments*</label>
-                                                    <textarea name="message" placeholder=""></textarea>
-                                                </div>
-                                                
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
-                                                    <button class="theme-btn btn-style-four" type="submit" name="submit-form"><span class="txt">Submit now</span></button>
-                                                </div>
-                                                
-                                            </div>
-                                        </form>
                                             
-                                    </div>
+                                        </div>
                                     
+                                    <?php
+                                            }
+                                        } else {
+                                            echo "Sản phẩm hiện không có đánh giá nào";
+                                        }
+                                    ?>
                                 </div>
 
                                 <!--Tab / Active Tab-->
