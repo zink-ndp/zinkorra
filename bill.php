@@ -262,7 +262,7 @@
                         <div class="row" style="padding: 10px; border-bottom: 1px dashed #ededed">
                             <div class="col-lg-9 col-md-7" style="font-weight: bold; font-size: 16px;">
                                 <!-- <?php echo date_format(date_create($row['B_DATE']),'d-m-Y') ?> -->
-                                <?php echo $row['B_DATE'] ?> _ Mã hoá đơn: <?php echo $bid ?>
+                                <?php echo date_format(date_create($row['B_DATE']),'d-m-Y') ?> _ Mã hoá đơn: <?php echo $bid ?>
                             </div>
                             <div class="col-lg-3 col-md-5" style="text-align: right; text-transform: uppercase; color: #dfb162; font-weight: bold;">
                                 <?php echo $row['ST_NAME'] ?>
@@ -374,6 +374,27 @@
                                                             var ratebox = document.getElementById(targetId);
                                                             if (ratebox) {
                                                                 ratebox.style.display = 'block';
+                                                                // Select all star elements with the 'star' class
+                                                                const stars = document.querySelectorAll('.star');
+
+                                                                // Loop through each star element and add an event listener
+                                                                stars.forEach((star, index) => {
+                                                                    star.addEventListener('click', function(e) {
+                                                                        e.preventDefault();
+                                                                        // Reset the color of all stars
+                                                                        stars.forEach((s, i) => {
+                                                                            if (i <= index) {
+                                                                                s.style.color = '#ffb600';
+                                                                            } else {
+                                                                                s.style.color = '#adb5bd';
+                                                                            }
+                                                                        });
+
+                                                                        // Update the 'rate' input field with the selected star value
+                                                                        rate.innerHTML = '<input type="hidden" name="star" value="' + (index + 1) + '">';
+                                                                    });
+                                                                });
+
                                                             }   
                                                         }
 
@@ -391,30 +412,6 @@
                                                         });
 
                                                     });
-
-
-                                                    // Select all star elements with the 'star' class
-                                                    const stars = document.querySelectorAll('.star');
-
-                                                    // Loop through each star element and add an event listener
-                                                    stars.forEach((star, index) => {
-                                                        star.addEventListener('click', function(e) {
-                                                            e.preventDefault();
-                                                            // Reset the color of all stars
-                                                            stars.forEach((s, i) => {
-                                                                if (i <= index) {
-                                                                    s.style.color = '#ffb600';
-                                                                } else {
-                                                                    s.style.color = '#adb5bd';
-                                                                }
-                                                            });
-
-                                                            // Update the 'rate' input field with the selected star value
-                                                            rate.innerHTML = '<input type="hidden" name="star" value="' + (index + 1) + '">';
-                                                        });
-                                                    });
-
-
                                                 </script>
                                             </form>
                                         </div>
