@@ -141,11 +141,19 @@
                                                             <?php echo $row['CTM_NAME'] ?> – (<?php echo date_format(date_create($row['R_DATE']),'d-M-Y') ?>): <?php echo $row['R_TITLE'] ?>
                                                         </div>
                                                         <div class="rating">
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
+                                                            <?php
+                                                                $n=0;
+                                                                for ($i=0; $i < $row['R_STAR']; $i++) { 
+                                                                    echo '<span class="fa fa-star"></span>';
+                                                                    $n++;
+                                                                }
+                                                                if ($n<5){
+                                                                    $nonstar = 5-$n;
+                                                                    for ($i=0; $i < $nonstar; $i++) { 
+                                                                        echo '<span style="color: #adb5bd" class="fa fa-star"></span>';
+                                                                    }
+                                                                }
+                                                            ?>
                                                         </div>
                                                         <div class="text"><?php echo $row['R_COMMENT'] ?></div>
                                                     </div>

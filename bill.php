@@ -331,19 +331,19 @@
                                                             <h4> <?php echo $pd['PD_NAME'] ?></h4>
                                                             <div class="text mt-5" id="text"> Đánh giá của bạn:</div>
                                                             <div class="rating">
-                                                                <a class="star astar1" ><span class="fa fa-star"></span></a>
+                                                                <a id="star-<?php echo $pd['PD_ID']; ?>" class="astar1" ><span class="fa fa-star"></span></a>
                                                             </div>
                                                             <div class="rating">
-                                                                <a class="star astar2" ><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
+                                                                <a id="star-<?php echo $pd['PD_ID']; ?>" class="astar2" ><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
                                                             </div>
                                                             <div class="rating">
-                                                                <a class="star astar3" ><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
+                                                                <a id="star-<?php echo $pd['PD_ID']; ?>" class="astar3" ><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
                                                             </div>
                                                             <div class="rating">
-                                                                <a class="star astar4" ><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
+                                                                <a id="star-<?php echo $pd['PD_ID']; ?>" class="astar4" ><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
                                                             </div>
                                                             <div class="rating">
-                                                                <a class="star astar5" ><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
+                                                                <a id="star-<?php echo $pd['PD_ID']; ?>" class="astar5" ><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
                                                             </div>
                                                         </div>
                                                         <div class="row clearfix">
@@ -356,7 +356,7 @@
                                                                 <textarea name="comment" placeholder=""></textarea>
                                                             </div>
                                                             <input type="hidden" name="pdid" value="<?php echo $pd['PD_ID'] ?>">
-                                                            <div class="rate"></div>
+                                                            <div id="rate-<?php echo $pd['PD_ID']; ?>"></div>
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group" style="display: flex; justify-content: right;">
                                                                 <button class="theme-btn btn-style-four" type="submit" name="submit-form"><span class="txt">Gửi</span></button>
                                                             </div>
@@ -372,15 +372,19 @@
                                                         if (e.target && e.target.classList.contains('rate-btn')) {
                                                             var targetId = e.target.getAttribute('data-target');
                                                             var ratebox = document.getElementById(targetId);
+                                                            var productId = ratebox.id.split('-')[2];
                                                             if (ratebox) {
                                                                 ratebox.style.display = 'block';
+
                                                                 // Select all star elements with the 'star' class
-                                                                const stars = document.querySelectorAll('.star');
+                                                                const stars = document.querySelectorAll('#star-' + productId);
+                                                                const rate = document.getElementById('rate-' + productId);
 
                                                                 // Loop through each star element and add an event listener
                                                                 stars.forEach((star, index) => {
                                                                     star.addEventListener('click', function(e) {
                                                                         e.preventDefault();
+
                                                                         // Reset the color of all stars
                                                                         stars.forEach((s, i) => {
                                                                             if (i <= index) {
@@ -391,25 +395,24 @@
                                                                         });
 
                                                                         // Update the 'rate' input field with the selected star value
-                                                                        rate.innerHTML = '<input type="hidden" name="star" value="' + (index + 1) + '">';
+                                                                        const starValue = index + 1;
+                                                                        rate.innerHTML = '<input type="hidden" name="star" value="' + starValue + '">';
                                                                     });
                                                                 });
+
 
                                                             }   
                                                         }
 
+                                                        
+
                                                         if (e.target && e.target.classList.contains('close-button')) {
                                                             var productId = e.target.id.split('-')[1];
-                                                            var ratebox = document.getElementById('rate-box-' + productId);
+                                                            var ratebox = document.getElementById('rate-box-' + productId)
                                                             if (ratebox) {
                                                                 ratebox.style.display = 'none';
                                                             }
                                                         }
-
-                                                        const stars = rateBox.querySelectorAll('.star');
-                                                        stars.forEach((star, index) => {
-                                                            star.style.color = '#adb5bd';
-                                                        });
 
                                                     });
                                                 </script>
