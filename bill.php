@@ -10,7 +10,9 @@
 
 <!--Search Popup-->
 <?php
-	include "search-popup.php";
+	require "search-popup.php";
+    require 'popup-message.php';
+
 ?>
 
 <div class="page-wrapper">
@@ -278,12 +280,14 @@
                                 foreach ($rsall as $pd) {
                                     $tt += $pd['PD_PRICE']*$pd['PD_QUANT'];
                         ?>
-                        <div class="row" style="padding: 10px; margin: 10px;  border-bottom: 1px dashed #ededed">
+                        <div class="row rate" style="padding: 10px; margin: 10px;  border-bottom: 1px dashed #ededed">
                             <div class="col-1" style="border: 1px solid #f0f0f0; width: 80px; height: 80px;">
                                 <img style="height: 100%; width: 100%; object-fit: cover" src="images/products/<?php echo $pd['PD_PIC'] ?>" alt="">
                             </div>
                             <div class="col-8">
-                                <span style="color: #dfb162; font-size: 16px;"><?php echo $pd['PD_NAME'] ?></span><br>
+                                <a href="product-detail.php?id=<?php echo $pd['PD_ID'] ?>">
+                                    <span style="color: #dfb162; font-size: 16px;"><?php echo $pd['PD_NAME'] ?></span><br>
+                                </a>
                                 <span>Số lượng: <?php echo $pd['PD_QUANT'] ?></span><br>
                             </div>
                             <div class="col-2 mt-3" style="text-align: right;">
@@ -291,9 +295,130 @@
                             </div>
                             <?php
                                 if($row['ST_ID']==3){
+                                    $yourDate = $row['B_DATE']; 
+                                    $interval = new DateInterval('P30D');
+                                    $dateTime = new DateTime($yourDate);
+                                    $dateTime->add($interval);
+                                    $rateDate = $dateTime->format('d-m-Y');
+                                    $curdate = strtotime(date('Y-m-d'));
+                                    $expdate = strtotime($dateTime->format('Y-m-d'));
+                                    $isExpire = '';
+                                    if ($curdate>$expdate){
+                                        $isExpire = 'disabled';
+                                    }
                             ?>
                                 <div class="col-1">
-                                        <button type="button" class="theme-btn btn-style-four mt-2" style="padding: 2px 6px !important; font-size: 10px !important"><span class="txt"><i class="fas fa-star"></i> RATE</span></button>
+                                    <button class="theme-btn btn-style-four mt-2 " type="button" <?php echo $isExpire ?> style="padding: 2px 6px !important; font-size: 10px !important">
+                                        <span data-target="rate-box-<?php echo $pd['PD_ID']; ?>" class="txt rate-btn"><i class="fas fa-star"></i> RATE</span>
+                                    </button>
+                                </div>
+                                <div class="col-12">
+                                    <div id="rate-box-<?php echo $pd['PD_ID']; ?>" style="display: none;" class="shop-comment-form mt-4 rate-box">	
+                                        <div style="width: 40%; 
+                                                    background-color: white; 
+                                                    padding: 3rem 0rem; 
+                                                    z-index: 999; 
+                                                    position: fixed;
+                                                    top: 50%;
+                                                    left: 50%;
+                                                    transform: translate(-50%, -50%);
+                                                    box-shadow: 15px 15px 50px grey;">
+                                            <form method="get" action="add-review.php">
+                                                <div class="row clearfix">
+                                                    <div class="col-2"></div>
+                                                    <div class="col-8">
+                                                        <div class="rating-box">
+                                                            <h4> <?php echo $pd['PD_NAME'] ?></h4>
+                                                            <div class="text mt-5" id="text"> Đánh giá của bạn:</div>
+                                                            <div class="rating">
+                                                                <a class="star astar1" ><span class="fa fa-star"></span></a>
+                                                            </div>
+                                                            <div class="rating">
+                                                                <a class="star astar2" ><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
+                                                            </div>
+                                                            <div class="rating">
+                                                                <a class="star astar3" ><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
+                                                            </div>
+                                                            <div class="rating">
+                                                                <a class="star astar4" ><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
+                                                            </div>
+                                                            <div class="rating">
+                                                                <a class="star astar5" ><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row clearfix">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                <label>Tiêu đề:</label>
+                                                                <input type="text" name="title" id="">
+                                                            </div>
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                <label>Bình luận:</label>
+                                                                <textarea name="comment" placeholder=""></textarea>
+                                                            </div>
+                                                            <input type="hidden" name="pdid" value="<?php echo $pd['PD_ID'] ?>">
+                                                            <div class="rate"></div>
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group" style="display: flex; justify-content: right;">
+                                                                <button class="theme-btn btn-style-four" type="submit" name="submit-form"><span class="txt">Gửi</span></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <button id="close-<?php echo $pd['PD_ID']; ?>" type="button" class="btn btn-link text-danger close-button">Đóng X</button>
+                                                    </div>
+                                                </div>
+                                                <script>
+
+                                                    document.addEventListener('click', function(e) {
+                                                        if (e.target && e.target.classList.contains('rate-btn')) {
+                                                            var targetId = e.target.getAttribute('data-target');
+                                                            var ratebox = document.getElementById(targetId);
+                                                            if (ratebox) {
+                                                                ratebox.style.display = 'block';
+                                                            }   
+                                                        }
+
+                                                        if (e.target && e.target.classList.contains('close-button')) {
+                                                            var productId = e.target.id.split('-')[1];
+                                                            var ratebox = document.getElementById('rate-box-' + productId);
+                                                            if (ratebox) {
+                                                                ratebox.style.display = 'none';
+                                                            }
+                                                        }
+
+                                                        const stars = rateBox.querySelectorAll('.star');
+                                                        stars.forEach((star, index) => {
+                                                            star.style.color = '#adb5bd';
+                                                        });
+
+                                                    });
+
+
+                                                    // Select all star elements with the 'star' class
+                                                    const stars = document.querySelectorAll('.star');
+
+                                                    // Loop through each star element and add an event listener
+                                                    stars.forEach((star, index) => {
+                                                        star.addEventListener('click', function(e) {
+                                                            e.preventDefault();
+                                                            // Reset the color of all stars
+                                                            stars.forEach((s, i) => {
+                                                                if (i <= index) {
+                                                                    s.style.color = '#ffb600';
+                                                                } else {
+                                                                    s.style.color = '#adb5bd';
+                                                                }
+                                                            });
+
+                                                            // Update the 'rate' input field with the selected star value
+                                                            rate.innerHTML = '<input type="hidden" name="star" value="' + (index + 1) + '">';
+                                                        });
+                                                    });
+
+
+                                                </script>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             <?php
                                 }
@@ -313,11 +438,6 @@
                             <div class="col-8">
                                 <?php
                                     if ($row['ST_ID'] == 3){
-                                        $yourDate = $row['B_DATE']; 
-                                        $interval = new DateInterval('P30D');
-                                        $dateTime = new DateTime($yourDate);
-                                        $dateTime->add($interval);
-                                        $rateDate = $dateTime->format('d-m-Y');
                                         echo 'Đánh giá sản phẩm trước ngày '.$rateDate;
                                     } else {
                                         echo 'Đánh giá sản phẩm sau khi nhận hàng';
@@ -361,13 +481,13 @@
 
 <!--Scroll to top-->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
+    
 
 <!--Search Popup-->
 <?php
     include "search-popup.php";
 ?>
 
-<!--Scroll to top-->
 <script src="js/jquery.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/jquery-ui.js"></script>

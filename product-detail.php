@@ -103,8 +103,8 @@
                         
                             <!--Tab Btns-->
                             <ul class="tab-btns tab-buttons clearfix">
-                                <li data-tab="#prod-reviews" class="tab-btn active-btn">Review</li>
-                                <li data-tab="#prod-details" class="tab-btn">Descripton</li>
+                                <li data-tab="#prod-reviews" class="tab-btn active-btn">Đánh giá</li>
+                                <li data-tab="#prod-details" class="tab-btn">Mô tả sản phẩm</li>
                                 <!-- <li data-tab="#prod-spec" class="tab-btn">Specification</li> -->
                             </ul>
                             
@@ -138,7 +138,7 @@
                                                     <div class="author-thumb"><img src="images/custommer/<?php echo $avt ?>" alt=""></div>
                                                     <div class="comment-inner">
                                                         <div class="comment-info clearfix">
-                                                            <?php echo $row['CTM_NAME'] ?> – <?php echo $row['R_DATE'] ?>: <?php echo $row['R_TITLE'] ?>
+                                                            <?php echo $row['CTM_NAME'] ?> – (<?php echo date_format(date_create($row['R_DATE']),'d-M-Y') ?>): <?php echo $row['R_TITLE'] ?>
                                                         </div>
                                                         <div class="rating">
                                                             <span class="fa fa-star"></span>
