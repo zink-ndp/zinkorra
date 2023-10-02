@@ -198,10 +198,8 @@
                             <option disabled value="">Loại nội thất</option>
                             <option value="">Mặc định</option>
                             <?php 
-                                $sqlType = "select * from type";
-                                $rsType = $conn->query($sqlType);
+                                $rsType = querySqlwithResult($conn,"select * from type");
                                 if ($rsType->num_rows > 0) {
-                                    $rsType = $conn->query($sqlType);
                                     $rsType_all = $rsType -> fetch_all(MYSQLI_ASSOC);
                                     foreach ($rsType_all as $row) {
                                         ?>
@@ -234,6 +232,15 @@
                     $offset = ($current_page - 1) * $productsPerPage;
 
                     $sql = "SELECT * FROM products where 1";
+                    if (isset($_GET['active'])){
+                        if ($_GET['active']=='hot'){
+                            $sql = "select pd.*, sum(bd.PD_QUANT) as pdquant, count(distinct bd.B_ID) as bquant 
+                                from products pd
+                                left join bill_detail bd on pd.PD_ID = bd.PD_ID
+                                group by pd.PD_ID, PD.PD_NAME
+                                order by pdquant desc";
+                        }
+                    }
 
                     if (isset($_GET['priceFill'])){
                         switch ($_GET['priceFill']) {
@@ -281,7 +288,7 @@
                             <?php
                                     // Tính số trang dựa trên tổng số sản phẩm
                                 $q = "SELECT COUNT(*) AS total FROM products".$pagivation;
-                                $rs = $conn->query($q);
+                                $rs = querySqlwithResult($conn,$q);
 
                                 if ($rs->num_rows > 0) {
                                     $r = $rs->fetch_assoc();
@@ -354,7 +361,7 @@
                         }
                     ?>
                     <?php
-                            // Tính số trang dựa trên tổng số sản phẩm
+                        // Tính số trang dựa trên tổng số sản phẩm
                         $q = "SELECT COUNT(*) AS total FROM products".$pagivation;
                         $rs = $conn->query($q);
 

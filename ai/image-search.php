@@ -68,8 +68,7 @@
 
     $new_filename = 'img_to_search.png';
     rename($filename, $new_filename);
-
-    // system('echo "no" | python ai.py');
+    
     header("Refresh: 0.1; url=loading_ai.php");
 
     

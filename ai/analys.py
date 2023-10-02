@@ -1,44 +1,47 @@
 import tensorflow as tf
 
-# Tải mô hình ResNet50
-model = tf.keras.applications.ResNet50(include_top=False, weights='imagenet')
-
-# Chuẩn bị dữ liệu huấn luyện và đánh giá
-train_data = tf.keras.preprocessing.image.ImageDataGenerator(
-    rescale=1./255,
-    rotation_range=20,
-    width_shift_range=0.1,
-    height_shift_range=0.1,
-    horizontal_flip=True,
-    vertical_flip=True
+model = tf.keras.applications.InceptionV3(
+  weights='imagenet',
+  include_top=False,
+  input_shape=(224, 224, 3)
 )
 
-train_data = train_data.flow_from_directory(
-    'C:/xampp/htdocs/zinkorra/ai/input',
-    batch_size=32,
-    target_size=(224, 224)
+# Tạo bộ chuyển đổi dữ liệu
+data_generator = tf.keras.preprocessing.image.ImageDataGenerator(
+  rescale=1.0/255.0,
+  validation_split=0.2
 )
 
-val_data = tf.keras.preprocessing.image.ImageDataGenerator(
-    rescale=1./255
+# Tải tập dữ liệu
+train_dataset = data_generator.flow_from_directory(
+  directory='../images/products',
+  target_size=(224, 224),
+  batch_size=32,
+  class_mode='categorical',
+  subset='training'
 )
 
-val_data = val_data.flow_from_directory(
-    'C:/xampp/htdocs/zinkorra/ai/val',
-    batch_size=32,
-    target_size=(224, 224)
+validation_dataset = data_generator.flow_from_directory(
+  directory='../images/products',
+  target_size=(224, 224),
+  batch_size=32,
+  class_mode='categorical',
+  subset='validation'
 )
 
-# Huấn luyện mô hình
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-
-history = model.fit(
-    x=train_data,
-    epochs=10,
-    validation_data=val_data
+model.compile(
+  optimizer='adam',
+  loss='categorical_crossentropy',
+  metrics=['accuracy']
 )
 
+model.fit(
+  train_dataset,
+  epochs=10,
+  validation_data=validation_dataset
+)
 
-# Đánh giá mô hình
-score = model.evaluate(val_data, verbose=0)
-print(f'Test loss: {score[0]} / Test accuracy: {score[1]}')
+# Đánh giá mô hình trên tập dữ liệu test
+loss, accuracy = model.evaluate(validation_dataset)
+print(f'loss: {loss}, accuracy: {accuracy}')
+

@@ -1,7 +1,6 @@
 <?php
 
     require 'connect.php';
-    require 'function.php';
 
     $id = $_SESSION['id'];
     $name = $_SESSION['name'];

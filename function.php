@@ -10,4 +10,9 @@
         $conn->query($sql);
     }
 
+    function querySqlwithResult($conn, $sql){
+        $result = $conn->query($sql);
+        return $result;
+    }
+
 ?>

@@ -75,7 +75,7 @@
                             $file = fopen("ai/data.txt", "r");
                             $line = trim(fgets($file).PHP_EOL);
                             $sql = "select * from type t join products p on p.TY_ID = t.TY_ID where p.PD_PIC = '{$line}'";
-                            $result = $conn->query($sql);
+                            $result = querySqlwithResult($conn,$sql);
                             $row = $result->fetch_assoc();
                             echo "<h5 class='mt-2'>".$row['TY_NAME']."</h5>";
                             fclose($file);  

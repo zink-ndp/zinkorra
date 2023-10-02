@@ -7,8 +7,7 @@
         $act = 1;
     } else $act = 0;
 
-    $sql = "update table cart_detail set PD_isChecked = $act where PD_ID = $pdid";
-    $conn->query($sql);
+    querySql($conn,"update table cart_detail set PD_isChecked = $act where PD_ID = $pdid");
 
     echo $pdid." ".$action;
 
