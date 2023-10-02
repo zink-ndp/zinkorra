@@ -4,11 +4,10 @@ require 'connect.php';
 $username = mysqli_real_escape_string($conn, $_POST['usname']);
 $password = mysqli_real_escape_string($conn, $_POST['pass']);
 
-$sql = "select * from custommer where CTM_EMAIL = '".strtolower($username)."' and CTM_PASS = '".$password."'";
-$result = $conn->query($sql);
+$result = querySqlwithResult($conn,"select * from custommer where CTM_EMAIL = '".strtolower($username)."' and CTM_PASS = '".$password."'");
+
 if ($result->num_rows > 0) {
  
-  
   $row = $result->fetch_assoc();
   $_SESSION["id"] = $row['CTM_ID'];
   $_SESSION["pw"] = $row['CTN_PASS'];

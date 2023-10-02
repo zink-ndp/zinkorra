@@ -3,8 +3,7 @@
     
     require 'connect.php';
 
-    $sql = "select * from sale where SL_CODE = '$code' and sysdate()<SL_END_DATE";
-    $result = $conn->query($sql);
+    $result = querySqlwithResult($conn, "select * from sale where SL_CODE = '$code' and sysdate()<SL_END_DATE");
     if($result->num_rows>0){
         $row = $result->fetch_assoc();
         $_SESSION['message'] = "Đã áp dụng mã giảm";

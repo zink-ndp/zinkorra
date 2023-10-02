@@ -10,10 +10,7 @@
     $pay = $_POST['payment'];
     $total = $_POST['total'];
 
-    $sql = "select max(B_ID) as maxId from bill";
-    $rs = $conn->query($sql);
-    $r = $rs->fetch_assoc();
-    $nextId = $r['maxId']+1;
+    $nextId = getMaxId($conn, "select max(B_ID) as maxId from bill")+1;
 
     $diachi = $note.', '.$huyen.', '.$tinh;
     
@@ -23,16 +20,13 @@
         $sql = "insert into bill values ($nextId, 1, $pay, null, {$_SESSION['id']}, null, sysdate(),'$diachi',$total)";
     }
     if ($conn->query($sql)){
-        $sql = "select cd.*, pd.PD_ID, pd.PD_NAME, pd.PD_PRICE from cart_detail cd join products pd on pd.PD_ID=cd.PD_ID where cd.CTM_ID={$_SESSION['id']}";
-        $rs = $conn->query($sql);
+        $rs = querySqlwithResult($conn, "select cd.*, pd.PD_ID, pd.PD_NAME, pd.PD_PRICE from cart_detail cd join products pd on pd.PD_ID=cd.PD_ID where cd.CTM_ID={$_SESSION['id']}");
         $rs_all = $rs->fetch_all(MYSQLI_ASSOC);
         foreach ($rs_all as $row) {
-            $sql_insert = "insert into bill_detail values ($nextId, {$row['PD_ID']}, {$row['PD_QUANT']})";
-            $conn->query($sql_insert);
+            querySql($conn, "insert into bill_detail values ($nextId, {$row['PD_ID']}, {$row['PD_QUANT']})");
         }
 
-        $del_cart = "delete from cart_detail where CTM_ID = {$_SESSION['id']}";
-        $conn->query($del_cart);
+        querySql($conn,"delete from cart_detail where CTM_ID = {$_SESSION['id']}");
         $_SESSION['message'] = "Đã đặt hàng thành công";
         header('Location: cart-page.php?popup=1');
     } else {

@@ -95,10 +95,8 @@
                             while (!feof($myfile)) {
                                 $line = fgets($myfile);
                                 // echo $line.PHP_EOL."<br>";
-                                $sql = "select * from products where PD_PIC like '".trim($line.PHP_EOL)."'";
-                                $result = $conn->query($sql);
+                                $result = querySqlwithResult($conn,"select * from products where PD_PIC like '".trim($line.PHP_EOL)."'");
                                     if ($result->num_rows > 0) {
-                                    $result = $conn->query($sql);
                                     $result_all = $result -> fetch_all(MYSQLI_ASSOC);
                                     foreach ($result_all as $row) {
                         ?>

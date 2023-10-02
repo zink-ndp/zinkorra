@@ -40,8 +40,7 @@ require 'head.php';
 
 					<?php
                         $cid = $_SESSION['id'];
-                        $query = "select * from custommer where CTM_ID = ".$cid;
-                        $result = $conn->query($query);
+                        $result = querySqlwithResult($conn, "select * from custommer where CTM_ID = ".$cid);
                         $row = $result->fetch_assoc();
                     ?>
 					<div class="content-column col-lg-2"></div>
