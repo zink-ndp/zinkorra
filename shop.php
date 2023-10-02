@@ -232,13 +232,15 @@
                     $offset = ($current_page - 1) * $productsPerPage;
 
                     $sql = "SELECT * FROM products where 1";
+                    $active="newest";
                     if (isset($_GET['active'])){
                         if ($_GET['active']=='hot'){
-                            $sql = "select pd.*, sum(bd.PD_QUANT) as pdquant, count(distinct bd.B_ID) as bquant 
-                                from products pd
-                                left join bill_detail bd on pd.PD_ID = bd.PD_ID
-                                group by pd.PD_ID, PD.PD_NAME
-                                order by pdquant desc";
+                            $active="hot";
+                            $sql = "select pd.*, sum(bd.PD_QUANT) as total, count(distinct bd.B_ID) as bquant 
+                                    from products pd 
+                                    left join bill_detail bd on pd.PD_ID = bd.PD_ID 
+                                    group by pd.PD_ID 
+                                    order by total desc";
                         }
                     }
 
@@ -281,13 +283,20 @@
                                 if ($current_page != 1){
 
                             ?>                    
-                                <li class="prev"><a href="shop.php?page=<?php echo $current_page-1 ?>"><i class="fa fa-angle-left"></i></a></li>
+                                <li class="prev"><a href="shop.php?active=<?php echo $active ?>&page=<?php echo $current_page-1 ?>"><i class="fa fa-angle-left"></i></a></li>
                             <?php
                                 }
                             ?>
                             <?php
-                                    // Tính số trang dựa trên tổng số sản phẩm
+                                // Tính số trang dựa trên tổng số sản phẩm
                                 $q = "SELECT COUNT(*) AS total FROM products".$pagivation;
+                                if (isset($_GET['active'])){
+                                    if ($_GET['active']=='hot'){
+                                        $q = "SELECT COUNT(*) AS total FROM products pd 
+                                        left join bill_detail bd on pd.PD_ID = bd.PD_ID 
+                                        order by total desc";
+                                    }
+                                } 
                                 $rs = querySqlwithResult($conn,$q);
 
                                 if ($rs->num_rows > 0) {
@@ -299,12 +308,12 @@
                                 $total_pages = ceil($total_products / $productsPerPage);
                                 for ($i = 1; $i <= $total_pages; $i++) {
                                     $active_class = ($i == $current_page) ? 'active' : '';
-                                    echo '<li class="' . $active_class . '"><a href="shop.php?page='.$i.'">'.$i.'</a></li>';
+                                    echo '<li class="' . $active_class . '"><a href="shop.php?active='.$active.'&page='.$i.'">'.$i.'</a></li>';
                                 }
 
                                 if ($current_page != $total_pages){
                             ?>
-                            <li class="next"><a href="shop.php?page=<?php echo $current_page+1 ?>"><i class="fa fa-angle-right"></i></a></li>
+                            <li class="next"><a href="shop.php?active=<?php echo $active ?>&page=<?php echo $current_page+1 ?>"><i class="fa fa-angle-right"></i></a></li>
                             <?php } ?>
                         </ul>
                     </div>
@@ -356,14 +365,21 @@
                         if ($current_page != 1){
 
                     ?>                    
-                        <li class="prev"><a href="shop.php?page=<?php echo $current_page-1 ?>"><i class="fa fa-angle-left"></i></a></li>
+                        <li class="prev"><a href="shop.php?active=<?php echo $active ?>&page=<?php echo $current_page-1 ?>"><i class="fa fa-angle-left"></i></a></li>
                     <?php
                         }
                     ?>
                     <?php
                         // Tính số trang dựa trên tổng số sản phẩm
                         $q = "SELECT COUNT(*) AS total FROM products".$pagivation;
-                        $rs = $conn->query($q);
+                        if (isset($_GET['active'])){
+                            if ($_GET['active']=='hot'){
+                                $q = "SELECT COUNT(*) AS total FROM products pd 
+                                left join bill_detail bd on pd.PD_ID = bd.PD_ID 
+                                order by total desc";
+                            }
+                        } 
+                        $rs = querySqlwithResult($conn,$q);
 
                         if ($rs->num_rows > 0) {
                             $r = $rs->fetch_assoc();
@@ -374,12 +390,12 @@
                         $total_pages = ceil($total_products / $productsPerPage);
                         for ($i = 1; $i <= $total_pages; $i++) {
                             $active_class = ($i == $current_page) ? 'active' : '';
-                            echo '<li class="' . $active_class . '"><a href="shop.php?page='.$i.'">'.$i.'</a></li>';
+                            echo '<li class="' . $active_class . '"><a href="shop.php?active='.$active.'&page='.$i.'">'.$i.'</a></li>';
                         }
 
                         if ($current_page != $total_pages){
                     ?>
-                    <li class="next"><a href="shop.php?page=<?php echo $current_page+1 ?>"><i class="fa fa-angle-right"></i></a></li>
+                    <li class="next"><a href="shop.php?active=<?php echo $active ?>&page=<?php echo $current_page+1 ?>"><i class="fa fa-angle-right"></i></a></li>
                     <?php } ?>
                 </ul>
             </div>
