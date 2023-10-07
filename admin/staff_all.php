@@ -19,11 +19,62 @@
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Thống kê</h2>
+            <h2 class="h5 no-margin-bottom">DS Nhân viên</h2>
           </div>
         </div>
         <section class="no-padding-top no-padding-bottom">
           <div class="container-fluid">
+            <div class="table-responsive"> 
+              <table class="table table-striped table-hover">
+                  <thead>
+                      <th class="col-1">ID</th>
+                      <th class="col-2">Tên NV</th>
+                      <th class="col-2">Chức vụ</th>
+                      <th class="col-1">Giới tính</th>
+                      <th class="col-1">SĐT</th>
+                      <th class="col-3">Email</th>
+                      <th class="col-2"></th>
+                  </thead>
+                  <tbody>
+                      <?php
+                          $result = querySqlwithResult($conn,"select * from staff");;
+                          $result_all = $result -> fetch_all(MYSQLI_ASSOC);
+                          foreach ($result_all as $row) {
+                      ?>
+                      <tr>
+                          <td><?php echo $row['STF_ID'] ?></td>
+                          <td><?php echo $row['STF_NAME'] ?></td>
+                          <td>
+                            <?php 
+                              if ($row['RO_ID'] == "1") echo "Quản lý";
+                              else echo "Nhân viên";
+                            ?>
+                          </td>
+                          <td>
+                            <?php 
+                              if ($row['STF_GENDER']=="m") echo "Nam";
+                              else echo "Nữ"; 
+                            ?>
+                          </td>
+                          <td><?php echo $row['STF_PHONE'] ?></td>
+                          <td><?php echo $row['STF_EMAIL'] ?></td>
+                          <td>
+                              <div class="row">
+                                  <form action="product_edit.php" method="get">
+                                      <button class="btn btn-link text-warning"><i class="fas fa-edit"></i></button>
+                                  </form>
+                                  <form action="product_del.php" method="get">
+                                      <button class="btn btn-link text-warning"><i class="fas fa-trash-alt"></i></button>
+                                  </form>
+                              </div>
+                          </td>
+                      </tr>
+                      <?php
+                          }
+                      ?>
+                  </tbody>
+              </table>
+            </div>
           </div>
         </section>
       </div>
