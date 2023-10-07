@@ -10,7 +10,7 @@
         <li><a href="#dropDown_Product" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Sản phẩm </a>
             <ul id="dropDown_Product" class="collapse list-unstyled ">
             <li><a href="product_all.php">DS Sản phẩm</a></li>
-            <li><a href="product_add.php">Nhập SP</a></li>
+            <li><a href="product_add.php">Thêm SP</a></li>
             </ul>
         </li>
 </ul><span class="heading">Tài khoản</span>

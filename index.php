@@ -42,7 +42,7 @@
 			
 				<!-- Slide -->
 				<div class="slide">
-                	<div class="image-layer" style="background-image:url(images/main-slider/1.jpg)"></div>
+                	<div class="image-layer" style="background-image:url(images/main-slider/11.jpg)"></div>
 					<div class="auto-container">
 						<div class="content">
 							<h2>Đưa căn nhà trong mơ <br> thành hiện thực</h2>
@@ -56,7 +56,7 @@
 				
 				<!-- Slide -->
 				<div class="slide">
-                	<div class="image-layer" style="background-image:url(images/main-slider/5.jpg)"></div>
+                	<div class="image-layer" style="background-image:url(images/main-slider/4.jpg)"></div>
 					<div class="auto-container">
 						<div class="content">
 							<h2>Thiết kế phù hợp với<br> Phong cách của bạn</h2>

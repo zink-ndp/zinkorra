@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-model = tf.keras.applications.InceptionV3(
+model = tf.keras.applications.ResNet50(
   weights='imagenet',
   include_top=False,
   input_shape=(224, 224, 3)
@@ -15,7 +15,7 @@ data_generator = tf.keras.preprocessing.image.ImageDataGenerator(
 # Tải tập dữ liệu
 train_dataset = data_generator.flow_from_directory(
   directory='../images/products',
-  target_size=(224, 224),
+  target_size=(224, 224), 
   batch_size=32,
   class_mode='categorical',
   subset='training'
@@ -36,9 +36,7 @@ model.compile(
 )
 
 model.fit(
-  train_dataset,
-  epochs=10,
-  validation_data=validation_dataset
+  train_dataset,validation_dataset
 )
 
 # Đánh giá mô hình trên tập dữ liệu test

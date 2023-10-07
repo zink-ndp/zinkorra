@@ -15,7 +15,6 @@
                   <div class="logo">
                     <h1>Zink Orr'a</h1>
                   </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                 </div>
               </div>
             </div>
@@ -33,7 +32,6 @@
                       <label for="login-password" class="label-material">Mật khẩu</label>
                     </div>
                     <button type="submit" id="login" class="btn btn-primary">Đăng nhập</button>
-                    <!-- This should be submit button but I replaced it with <a> for demo purposes-->
                   </form>
                   <a href="#" class="forgot-pass">Quên mật khẩu?</a>
                 </div>
@@ -46,13 +44,4 @@
         <p>2018 &copy; Zink Orr'a <a href="../index.php"> Trang bán hàng</a></p>
       </div>
     </div>
-    <!-- JavaScript files-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="js/front.js"></script>
-  </body>
-</html>
+    <?php require 'end.php' ?>

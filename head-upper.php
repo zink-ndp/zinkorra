@@ -3,7 +3,7 @@
                 <div class="auto-container clearfix">
                     <!--Info-->
                     <div class="logo-outer">
-                        <div class="logo"><a href="index-2.html"><img src="images/logo.png" alt="" title=""></a></div>
+                        <div class="logo"><a href="index.php"><img src="images/logo.png" alt="" title=""></a></div>
                     </div>
 
                     <!--Nav Box-->

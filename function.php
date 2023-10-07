@@ -15,4 +15,15 @@
         return $result;
     }
 
+    function uploadImage($file, $filename, $tar_dir, $fname){
+
+        move_uploaded_file($file['tmp_name'],$tar_dir.$filename);
+
+        $new_filename = $fname;
+
+        rename($tar_dir.$filename, $tar_dir.$new_filename);
+
+        return $new_filename;
+    }
+
 ?>

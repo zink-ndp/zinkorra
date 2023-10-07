@@ -24,7 +24,7 @@
         $rs_all = $rs->fetch_all(MYSQLI_ASSOC);
         foreach ($rs_all as $row) {
             querySql($conn, "insert into bill_detail values ($nextId, {$row['PD_ID']}, {$row['PD_QUANT']})");
-            querySql($conn, "update products set PD_QUANT = PD_QUANT - {$row['PD_QUANT']} where PD_ID = {$row['PD_ID']}");
+            // querySql($conn, "update products set PD_QUANT = PD_QUANT - {$row['PD_QUANT']} where PD_ID = {$row['PD_ID']}");
         }
 
         querySql($conn,"delete from cart_detail where CTM_ID = {$_SESSION['id']}");
