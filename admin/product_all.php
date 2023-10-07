@@ -51,11 +51,13 @@
                             <td><?php echo $row['PD_QUANT'] ?></td>
                             <td>
                                 <div class="row">
-                                    <form action="product_edit.php" method="get">
-                                        <button class="btn btn-link text-warning"><i class="fas fa-edit"></i></button>
+                                    <form action="product_modi.php" method="get">
+                                      <input type="hidden" name="id" value="<?php echo $row['PD_ID'] ?>">
+                                      <button class="btn btn-link text-warning"><i class="fas fa-edit"></i></button>
                                     </form>
                                     <form action="product_del.php" method="get">
-                                        <button class="btn btn-link text-warning"><i class="fas fa-trash-alt"></i></button>
+                                      <input type="hidden" name="id" value="<?php echo $row['PD_ID'] ?>">
+                                      <button class="btn btn-link text-warning"><i class="fas fa-trash-alt"></i></button>
                                     </form>
                                 </div>
                             </td>
