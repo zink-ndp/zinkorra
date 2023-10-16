@@ -2,6 +2,7 @@
 <html>
   <?php
     require '../connect.php';
+    require '../popup-message.php';
     require 'head.php';
   ?>
   <body>
@@ -31,8 +32,8 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <th class="col-1">ID</th>
-                        <th class="col-3">Tên SP</th>
-                        <th class="col-5">Mô tả</th>
+                        <th class="col-5">Sản phẩm</th>
+                        <th class="col-3">Mô tả</th>
                         <th class="col-1">Giá</th>
                         <th class="col-1">Tồn kho</th>
                         <th class="col-2"></th>
@@ -45,7 +46,10 @@
                         ?>
                         <tr>
                             <td><?php echo $row['PD_ID'] ?></td>
-                            <td><?php echo $row['PD_NAME'] ?></td>
+                            <td>
+                              <img style="width: 70px;" src="../images/products/<?php echo $row['PD_PIC'] ?>" alt="">
+                              <?php echo $row['PD_NAME'] ?>
+                            </td>
                             <td class="limited-text"><?php echo $row['PD_DESCRI'] ?></td>
                             <td><?php echo number_format($row['PD_PRICE']) ?>đ</td>
                             <td><?php echo $row['PD_QUANT'] ?></td>

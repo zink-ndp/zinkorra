@@ -18,6 +18,7 @@
 
     querySql($conn, "insert into products values ($pdid, $itr, $ty, '$name', $price, '$des', '$img', '$quant')");
 
-    header('Location: product_all.php');
+    $_SESSION['message'] = "Thêm sản phẩm thành công";
+    header('Location: product_all.php?popup=1');
 
 ?>
