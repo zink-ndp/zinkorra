@@ -37,8 +37,6 @@
 
     querySql($conn, $sql);
 
-        // echo $sql;
-
     header('Location: product_all.php');
 
 ?>

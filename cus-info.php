@@ -9,7 +9,8 @@ require 'head.php';
 
 	<!--Search Popup-->
 	<?php
-		include "search-popup.php";
+		require "search-popup.php";
+		require "popup-message.php";
 	?>
 
 
@@ -72,10 +73,7 @@ require 'head.php';
 										</script>
 										<div class="row">
 											<button disabled id="button" type="submit" class=""><span class="txt">Đổi thông tin cá nhân</span></button>
-											
-											<form action="change-info.php" method="post">
-												<button type="submit" class="theme-btn btn-style-one"><span class="txt">Đổi mật khẩu</span></button>
-											</form>
+											<a class="mt-3" href="change-password.php">Đổi mật khẩu</a>
 										</div>
 									</form>
 								</div>

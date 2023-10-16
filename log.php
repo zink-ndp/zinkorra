@@ -10,7 +10,7 @@ if ($result->num_rows > 0) {
  
   $row = $result->fetch_assoc();
   $_SESSION["id"] = $row['CTM_ID'];
-  $_SESSION["pw"] = $row['CTN_PASS'];
+  $_SESSION["pw"] = $row['CTM_PASS'];
   $_SESSION["name"] = $row['CTM_NAME'];
   $fullname = explode(' ', $row['CTM_NAME']);
   $lastname = end($fullname);
