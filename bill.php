@@ -261,8 +261,8 @@
                     <div class="container-fluid mt-4" style="box-shadow: 2px 2px 5px grey;">
                         <div class="row" style="padding: 10px; border-bottom: 1px dashed #ededed">
                             <div class="col-lg-9 col-md-7" style="font-weight: bold; font-size: 16px;">
-                                <!-- <?php echo date_format(date_create($row['B_DATE']),'d-m-Y') ?> -->
                                 <?php echo date_format(date_create($row['B_DATE']),'d-m-Y') ?> _ Mã hoá đơn: <?php echo $bid ?>
+                                <a href="bill-detail.php?bid=<?php echo $bid ?>" target="_blank">In hoá đơn</a>
                             </div>
                             <div class="col-lg-3 col-md-5" style="text-align: right; text-transform: uppercase; color: #dfb162; font-weight: bold;">
                                 <?php echo $row['ST_NAME'] ?>

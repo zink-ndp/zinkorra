@@ -161,7 +161,7 @@
                                         ?>
                                 </td>
                             </form>
-                        <td><a href="./bill_detail.php">Chi tiết ></a></td>
+                        <td><a href="../bill-detail.php?bid=<?php echo $row['B_ID'] ?>">Chi tiết ></a></td>
                       </tr>
                       <?php
                           }
