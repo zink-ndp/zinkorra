@@ -20,9 +20,29 @@
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Thống kê</h2>
+            <div class="row d-flex justify-content-between">
+              <h2 class="h5 mt-2">Thống kê</h2>
+              <div>
+                <form action="#" class="form-inline">
+                  <div class="form-group">
+                    <label for="inlineFormInput" class="sr-only">Từ ngày</label>
+                    <input id="inlineFormInput" type="date" name="from" class="mr-sm-3 form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="inlineFormInputGroup" class="sr-only">Đến ngày</label>
+                    <input id="inlineFormInputGroup" type="date" name="to" class="mr-sm-3 form-control form-control">
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="Lọc" class="btn btn-primary">
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
+        <?php
+          
+        ?>
         <section class="no-padding-top no-padding-bottom">
           <div class="container-fluid">
             <div class="row">
@@ -30,12 +50,12 @@
                 <div class="statistic-block block">
                   <div class="progress-details d-flex align-items-end justify-content-between">
                     <div class="title">
-                      <div class="icon"><i class="icon-user-1"></i></div><strong>New Clients</strong>
+                      <div class="icon"><i class="icon-user-1"></i></div><strong>Tổng số Khách hàng</strong>
                     </div>
                     <div class="number dashtext-1">27</div>
                   </div>
                   <div class="progress progress-template">
-                    <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+                    <div role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
                   </div>
                 </div>
               </div>
