@@ -6,4 +6,5 @@
 <script src="vendor/chart.js/Chart.min.js"></script>
 <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 <script src="js/charts-home.js"></script>
+<script src="js/charts.js"></script>
 <script src="js/front.js"></script>
