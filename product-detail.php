@@ -70,10 +70,11 @@
                                     <div class="clear-fix row">
                                         <div class="col-12">
                                             <form method="post" id="myForm">
-                                                <span class="price">Số lượng</span> :</label><input class="quant_number price ms-3" type="number" value="1" min="1" name="quant"><br>
+                                                <span class="price">Số lượng: </span></label><input class="quant_number price ms-3" type="number" value="1" min="1" name="quant"><br>
                                                 <input type="hidden" name="pdid" value="<?php echo $row["PD_ID"] ?>">
-                                                <button name="addcart-btn" type="submit" class="theme-btn cart-btn px-4">Thêm vào giỏ hàng</button>
-                                                <button name="buynow-btn" type="submit" class="theme-btn cart-btn ms-3 mt-4 px-4">Thanh toán ngay</button>
+                                                <span class="price fs-6 text-warning">Còn lại trong kho: <?php echo $row['PD_QUANT'] ?> </span></label><br>
+                                                <button name="addcart-btn" type="submit" class="theme-btn cart-btn px-4 mt-4">Thêm vào giỏ hàng</button>
+                                                <!-- <button name="buynow-btn" type="submit" class="theme-btn cart-btn ms-3 mt-4 px-4">Thanh toán ngay</button> -->
                                             </form>
                                             <script>
                                                 document.getElementById("myForm").addEventListener("submit", function(event) {

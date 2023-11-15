@@ -10,7 +10,7 @@
     $pay = $_POST['payment'];
     $total = $_POST['total'];
 
-    $nextId = getMaxId($conn, "select max(B_ID) as maxId from bill")+1;
+    $nextId = getMaxId($conn, "select max(B_ID) as maxid from bill")+1;
 
     $diachi = $note.', '.$huyen.', '.$tinh;
     
@@ -24,7 +24,6 @@
         $rs_all = $rs->fetch_all(MYSQLI_ASSOC);
         foreach ($rs_all as $row) {
             querySql($conn, "insert into bill_detail values ($nextId, {$row['PD_ID']}, {$row['PD_QUANT']})");
-            // querySql($conn, "update products set PD_QUANT = PD_QUANT - {$row['PD_QUANT']} where PD_ID = {$row['PD_ID']}");
         }
 
         querySql($conn,"delete from cart_detail where CTM_ID = {$_SESSION['id']}");
