@@ -2,7 +2,7 @@
 <html>
   <?php
     require '../connect.php';
-    require '../popup-message.php';
+    require 'popup-message.php';
     require 'head.php';
   ?>
   <body>

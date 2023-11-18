@@ -1,33 +1,78 @@
 <!DOCTYPE html>
 <html>
-  <?php
-    require '../connect.php';
-    require 'head.php';
-  ?>
-  <body>
-    <?php require 'header.php' ?>
-    <div class="d-flex align-items-stretch">
-      <!-- Sidebar Navigation-->
-      <nav id="sidebar">
-        <!-- Sidebar Header-->
-        <!-- Sidebar Navidation Menus-->
-        <?php 
-          require 'sidebar_header.php' ;
-          require 'sidebar_menu.php' ;
-        ?>
-      </nav>
-      <div class="page-content">
-        <div class="page-header">
-          <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Thống kê</h2>
+<?php
+require '../connect.php';
+require 'head.php';
+?>
+
+<body>
+  <?php require 'header.php' ?>
+  <div class="d-flex align-items-stretch">
+    <!-- Sidebar Navigation-->
+    <nav id="sidebar">
+      <!-- Sidebar Header-->
+      <!-- Sidebar Navidation Menus-->
+      <?php
+      require 'sidebar_header.php';
+      require 'sidebar_menu.php';
+      ?>
+    </nav>
+    <div class="page-content">
+      <div class="page-header">
+        <div class="container-fluid">
+          <h2 class="h5 no-margin-bottom">Thêm nhân viên</h2>
+        </div>
+      </div>
+      <section class="no-padding-top no-padding-bottom">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 block">
+              <form action="staff_add_action.php" method="get">
+                <div class="form-group">
+                  <label class="form-control-label"><strong>Họ và tên:</strong></label>
+                  <input name="name" type="text" placeholder="Nguyễn Văn A" class="form-control ">
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label"><strong>Vai trò:</strong></label>
+                  <select name="role" class="form-control mb-3 mb-3">
+                    <option value="2">Nhân viên</option>
+                    <option value="1">Quản lý</option>
+                  </select>
+                </div>
+                <div class="form-group d-flex">
+                  <label class="form-control-label"><strong>Giới tính:</strong></label>
+                  <div class="ml-4">
+                    <input id="optionsRadios1" type="radio" checked="" value="option1" name="optionsRadios">
+                    <label for="optionsRadios1">Nam</label>
+                  </div>
+                  <div class="ml-4">
+                    <input id="optionsRadios2" type="radio" value="option2" name="optionsRadios">
+                    <label for="optionsRadios2">Nữ</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label"><strong>Số điện thoại:</strong></label>
+                  <input name="sdt" type="phone" placeholder="0xxxxxxxxxx" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label"><strong>Email:</strong></label>
+                  <input name="email" type="email" placeholder="a@gmail.com" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label"><strong>Mật khẩu đăng nhập:</strong></label>
+                  <input name="pw" type="password" placeholder="xxx" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-warning float-right mt-2 px-4">Thêm</button>
+              </form>
+            </div>
+            <div class="col-3"></div>
           </div>
         </div>
-        <section class="no-padding-top no-padding-bottom">
-          <div class="container-fluid">
-          </div>
-        </section>
-      </div>
+      </section>
     </div>
-    <?php require 'end.php' ?>
-  </body>
+  </div>
+  <?php require 'end.php' ?>
+</body>
+
 </html>
