@@ -13,15 +13,16 @@
         <li><a href="product_add.php">Thêm SP</a></li>
         </ul>
     </li>
-    <li> <a href="invoice.php?stt=1"><i class="fas fa-file-invoice-dollar"></i></i>Đơn hàng </a></li>
+    <li> <a href="invoice.php?stt=1"><i class="fas fa-file-invoice-dollar"></i>Đơn hàng </a></li>
+    <li> <a href="coupon.php"><i class="fas fa-dollar-sign"></i>Khuyến mãi </a></li>
 </ul><span class="heading">Tài khoản</span>
 <ul class="list-unstyled">
-    <li><a href="forms.html">FORM</a></li>
+    <!-- <li><a href="forms.html">FORM</a></li>
     <li><a href="charts.html">CHART</a></li>
-    <li><a href="tables.html">TABLE</a></li>
+    <li><a href="tables.html">TABLE</a></li> -->
 
     <li> <a href="#"><i class="fas fa-user-edit"></i>Thông tin cá nhân </a></li>
-    <li> <a href="#"><i class="fas fa-key"></i>Đổi mật khẩu </a></li>
+    <li> <a href="#"><i class="fas fa-key fa-xs"></i>Đổi mật khẩu </a></li>
     <li> <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất </a></li>
 </ul>
 
