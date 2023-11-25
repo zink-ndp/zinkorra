@@ -32,10 +32,11 @@ require 'head.php';
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <th class="col-3">Mã</th>
-                                    <th class="col-2">Tỉ lệ</th>
+                                    <th class="col-2">Tỉ lệ (%)</th>
                                     <th class="col-3">Ngày bắt đầu</th>
                                     <th class="col-3">Ngày kết thúc</th>
                                     <th class="col-1"></th>
+                                    <!-- <th class="col-1"></th> -->
                                 </thead>
                                 <tbody>
                                     <?php
@@ -55,33 +56,91 @@ require 'head.php';
                                         } else {
                                             echo '<td><span class="badge badge-danger">Hết hạn</span></td>';
                                         }
+                                        // echo '<td><a id="btnEdit"><i class="fas fa-edit dashtext-3"></i></a></td>';
                                     }
                                     ?>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-4 block">
-                            <div class="title"><strong>Thêm mã khuyến mãi</strong></div>
-                            <form action="coupon_add.php" method="get">
-                                <div class="form-group">
-                                    <label class="form-control-label"><strong>Mã:</strong></label>
-                                    <input name="code" type="text" placeholder="XXXXXX" class="form-control ">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label"><strong>Tỉ lệ (%):</strong></label>
-                                    <input name="tile" type="number" min="0" max="100" step="1" placeholder="XX"
-                                        class="form-control ">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label"><strong>Bắt đầu:</strong></label>
-                                    <input name="startd" type="date" class="form-control ">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label"><strong>Kết thúc:</strong></label>
-                                    <input name="endd" type="date" class="form-control ">
-                                </div>
-                                <button type="submit" class="btn btn-warning float-right mt-2 px-4">Thêm</button>
-                            </form>
+                        <div class="col-4">
+                            <div class="block col-12">
+                                <div class="title"><strong>Thêm mã khuyến mãi</strong></div>
+                                <form action="coupon_add.php" method="get">
+                                    <div class="form-group">
+                                        <label class="form-control-label"><strong>Mã:</strong></label>
+                                        <input name="code" type="text" placeholder="XXXXXX" class="form-control ">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label"><strong>Tỉ lệ (%):</strong></label>
+                                        <input name="tile" type="number" min="0" max="100" step="1" placeholder="XX"
+                                            class="form-control ">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label"><strong>Bắt đầu:</strong></label>
+                                        <input name="startd" type="date" class="form-control ">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label"><strong>Kết thúc:</strong></label>
+                                        <input name="endd" type="date" class="form-control ">
+                                    </div>
+                                    <button type="submit" class="btn btn-warning mt-2 px-4">Thêm</button>
+                                </form>
+                            </div>
+                            <div class="block col-12">
+                                <div class="title"><strong>Cập nhật khuyến mãi</strong></div>
+                                <form action="coupon_edit.php" method="get">
+                                    <div class="form-group">
+                                        <label class="form-control-label"><strong>Mã:</strong></label>
+                                        <select id="slSale" name="code" class="form-control">
+                                            <option selected value="">- Chọn mã -</option>
+                                            <?php
+                                            $sql = "select SL_CODE as code from sale";
+                                            $rs = querySqlwithResult($conn, $sql);
+                                            $sCodes = $rs->fetch_all(MYSQLI_ASSOC);
+                                            foreach ($sCodes as $sCode) {
+                                                echo '<option value="' . $sCode['code'] . '">' . $sCode['code'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                        <script>
+                                            var select = document.getElementById("slSale");
+                                            select.addEventListener("change", function () {
+                                                var slCode = select.value;
+                                                var xhr = new XMLHttpRequest();
+                                                xhr.open("POST", "coupon_getXhr.php", true);
+                                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                                xhr.onload = function () {
+                                                    if (xhr.status === 200) {
+                                                        var response = JSON.parse(xhr.responseText);
+                                                        $('#ipTile').val(response.perc)
+                                                        $('#ipNbd').val(response.sd)
+                                                        $('#ipNkt').val(response.ed)
+                                                        console.log(response)
+                                                    } else {
+                                                        console.error("Lỗi yêu cầu:", xhr.status, xhr.statusText);
+                                                    }
+                                                };
+                                                var data = "slid=" + slCode;
+                                                xhr.send(data);
+                                            });
+                                        </script>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label"><strong>Tỉ lệ (%):</strong></label>
+                                        <input name="tile" id="ipTile" type="number" min="0" max="100" step="1"
+                                            placeholder="XX" class="form-control ">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label"><strong>Bắt đầu:</strong></label>
+                                        <input name="startd" id="ipNbd" type="date" class="form-control ">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label"><strong>Kết thúc:</strong></label>
+                                        <input name="endd" id="ipNkt" type="date" class="form-control ">
+                                    </div>
+                                    <button type="submit" class="btn btn-warning mt-2 px-4">Cập nhật</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
