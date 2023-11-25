@@ -247,9 +247,7 @@
                                 Kết quả tìm kiếm cho "<?php echo $_GET['search'] ?>"
                             </div>
                         <?php
-                    } else {
-                        $sql .= $cond;
-                    }
+                    } 
                     $result = $conn->query($sql);
                     if ($result->num_rows>0) {
                         $result = $conn->query($sql);
@@ -452,6 +450,8 @@
                                         <button type="button" class="theme-btn btn-style-four" style="margin-left: 15px !important; padding: 5px 15px !important; background-color: #888 !important"><span class="txt">Mua lại</span></button>
                                     </a>
                                 <?php
+                                    } elseif ($row['ST_ID']==1) {
+                                        echo '<a href="bill-cancel-action.php?bid='.$bid.'"><button class="theme-btn btn-style-two" style="color: red;">Huỷ đơn</button></a>';
                                     }
                                 ?>
                             </div>
