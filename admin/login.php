@@ -24,7 +24,7 @@
                 <div class="content">
                   <form action="log.php" method="get" class="form-validate">
                     <div class="form-group">
-                      <input id="login-username" type="text" name="email" required data-msg="Vui lòng nhập email đăng nhập" class="input-material">
+                      <input id="login-username" type="email" name="email" required data-msg="Vui lòng nhập email đăng nhập" class="input-material">
                       <label for="login-username" class="label-material">Email đăng nhập</label>
                     </div>
                     <div class="form-group">

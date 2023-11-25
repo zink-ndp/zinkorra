@@ -106,9 +106,10 @@
                                 $to = $_GET['to'];
                                 $sql .= " and (B_DATE between '$from' and '$to')";
                             }
-                            $result = querySqlwithResult($conn,$sql);;
-                            $result_all = $result -> fetch_all(MYSQLI_ASSOC);
-                            foreach ($result_all as $row) {
+                            $result = querySqlwithResult($conn,$sql);
+                            if ($result->num_rows>0){
+                                $result_all = $result -> fetch_all(MYSQLI_ASSOC);
+                                foreach ($result_all as $row) {
                       ?>
                       <tr>
                             <td><?php echo $row['B_ID'] ?></td>
@@ -165,6 +166,9 @@
                       </tr>
                       <?php
                           }
+                        } else {
+                            echo '<h2>Không có đơn hàng nào</h2>';
+                        }
                       ?>
                   </tbody>
               </table>

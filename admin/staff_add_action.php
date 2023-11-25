@@ -2,22 +2,27 @@
 
     require '../connect.php';
 
-    $pdid = getMaxId($conn, "select max(PD_ID) as maxid from products") +1 ;
+    $stfid = getMaxId($conn, "select max(STF_ID) as maxid from staff") +1 ;
 
-    $itr = $_POST['interior'];
-    $ty = $_POST['type'];
+
+    $role = $_POST['role'];
     $name = $_POST['name'];
-    $des = $_POST['des'];
-    $price = $_POST['price'];
-    $quant = $_POST['quant'];
+    $gender = $_POST['gender'];
+    $sdt = $_POST['sdt'];
+    $email = $_POST['email'];
+    $pw = $_POST['pw'];
 
-    $file = $_FILES["imgProduct"];
+    // $file = $_FILES["imgProduct"];
 
-    $filename = $file['name'];
-    $img = uploadImage($file, $filename, "../images/products/", $pdid.'.png');
+    // $filename = $file['name'];
+    // $img = uploadImage($file, $filename, "../images/products/", $pdid.'.png');
 
-    querySql($conn, "insert into products values ($pdid, $itr, $ty, '$name', $price, '$des', '$img', '$quant')");
+    $sql = "insert into staff values ($stfid, $role, '$name', '$gender', '$sdt', '$email', '$pw', null)";
 
-    header('Location: product_all.php');
+    echo $sql;
+
+    querySql($conn, $sql);
+
+    header('Location: staff_all.php');
 
 ?>

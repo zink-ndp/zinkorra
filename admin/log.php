@@ -20,11 +20,11 @@
           } else {
             $_SESSION["avt"] = $row['STF_avt'];
           }
-        if ($row['RO_ID']==1){
-          header('Location: index.php');
-        } else {
-          alert("NV");
-        }
+          if ($_SESSION['role']=="Quản lý"){
+            header('Location: index.php');
+          } else {
+            header('Location: invoice.php?stt=1');
+          }
     } else {
         $message = "Email hoặc mật khẩu không đúng. Vui lòng thử lại!.";
         echo "<script type='text/javascript'>alert('$message');</script>";

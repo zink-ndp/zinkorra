@@ -28,7 +28,7 @@ require 'head.php';
           <div class="row">
             <div class="col-3"></div>
             <div class="col-6 block">
-              <form action="staff_add_action.php" method="get">
+              <form action="staff_add_action.php" method="post">
                 <div class="form-group">
                   <label class="form-control-label"><strong>Họ và tên:</strong></label>
                   <input name="name" type="text" placeholder="Nguyễn Văn A" class="form-control ">
@@ -40,16 +40,12 @@ require 'head.php';
                     <option value="1">Quản lý</option>
                   </select>
                 </div>
-                <div class="form-group d-flex">
+                <div class="form-group">
                   <label class="form-control-label"><strong>Giới tính:</strong></label>
-                  <div class="ml-4">
-                    <input id="optionsRadios1" type="radio" checked="" value="option1" name="optionsRadios">
-                    <label for="optionsRadios1">Nam</label>
-                  </div>
-                  <div class="ml-4">
-                    <input id="optionsRadios2" type="radio" value="option2" name="optionsRadios">
-                    <label for="optionsRadios2">Nữ</label>
-                  </div>
+                  <select name="gender" class="form-control mb-3 mb-3">
+                    <option value="m">Nam</option>
+                    <option value="f">Nữ</option>
+                  </select>
                 </div>
                 <div class="form-group">
                   <label class="form-control-label"><strong>Số điện thoại:</strong></label>
