@@ -337,16 +337,32 @@
                     	<div class="image-container">
                         	<a href="product-detail.php?id=<?php echo $row["PD_ID"] ?>"><img class="fit-image" src="images/products/<?php echo $row["PD_PIC"] ?>" alt="" /></a>
 							<div class="overlay-box">
-                                <ul class="option-box">
-                                    <li><a href="product-detail.php?id=<?php echo $row["PD_ID"] ?>"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="images/products/<?php echo $row["PD_PIC"] ?>" class="lightbox-image" data-fancybox="products"><span class="fa fa-search"></span></a></li>
-                                </ul>
+                                <?php
+                                    if ($row['PD_QUANT']!=0){
+                                ?>
+                                    <ul class="option-box">
+                                        <li><a href="product-detail.php?id=<?php echo $row["PD_ID"] ?>"><i class="fas fa-eye"></i></a></li>
+                                        <li><a href="images/products/<?php echo $row["PD_PIC"] ?>" class="lightbox-image" data-fancybox="products"><span class="fa fa-search"></span></a></li>
+                                    </ul>
+                                <?php
+                                    } else {
+                                ?>
+                                    <img src="images/tam_het.png" alt="">
+                                <?php
+                                    }
+                                ?>
                             </div>
                             <!-- <div class="tag-banner">New</div> -->
                         </div>
                         <div class="lower-content">
                         	<h3 style="font-size: 14px;"><a href="product-detail.php?id=<?php echo $row["PD_ID"] ?>"><?php echo $row["PD_NAME"] ?></a></h3>
-                            <div class="price mt-n2" style="font-size: 18px !important;"><?php echo number_format($row["PD_PRICE"]) ?>đ</div>
+                            <?php
+                                if ($row['PD_QUANT']!=0){
+                                    echo '<div class="price mt-n2" style="font-size: 18px !important;">'.number_format($row["PD_PRICE"]).'đ</div>';
+                                } else {
+                                    echo '<div class="price mt-n2" style="font-size: 18px !important;">TẠM HẾT</div>';
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>

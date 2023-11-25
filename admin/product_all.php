@@ -20,8 +20,9 @@
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
-            <div style="display: flex; flex-direction: row; justify-content: space-between">
+            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
               <h2 class="h5 no-margin-bottom">Danh sách sản phẩm</h2>
+              <input type="text" name="stfSearch" id="stfSearch" class="form-control w-50" placeholder="Tìm tên nhân viên">
               <a href="product_add.php">(Thêm sản phẩm mới)</a>
             </div>
           </div>
