@@ -57,7 +57,7 @@ require 'head.php';
                   <div class="title">
                     <div class="icon"><i class="icon-user-1"></i></div><strong>Tổng số Đơn hàng</strong>
                   </div>
-                  <div class="number dashtext-3">
+                  <div class="number dashtext-3" style="font-size: 25px !important;">
                     <?php echo $tatcadonhang ?>
                   </div>
                 </div>
@@ -73,7 +73,7 @@ require 'head.php';
                   <div class="title">
                     <div class="icon"><i class="icon-contract"></i></div><strong>Đơn hoàn thành</strong>
                   </div>
-                  <div class="number dashtext-3">
+                  <div class="number dashtext-3" style="font-size: 25px !important;">
                     <?php echo $donhoanthanh ?>
                   </div>
                 </div>
@@ -89,7 +89,7 @@ require 'head.php';
                   <div class="title">
                     <div class="icon"><i class="icon-paper-and-pencil"></i></div><strong>Đơn bị huỷ</strong>
                   </div>
-                  <div class="number dashtext-3">
+                  <div class="number dashtext-3" style="font-size: 25px !important;">
                     <?php echo $donhuy ?>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ require 'head.php';
                   <div class="title">
                     <div class="icon"><i class="icon-writing-whiteboard"></i></div><strong>Doanh thu</strong>
                   </div>
-                  <div class="number dashtext-3"><?php echo number_format($doanhthu) ?>đ</div>
+                  <div class="number dashtext-3" style="font-size: 25px !important;"><?php echo number_format($doanhthu) ?>đ</div>
                 </div>
                 <div class="progress progress-template">
                   <div role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
@@ -139,7 +139,7 @@ require 'head.php';
                     <span style="font-size: 21px; color: #ffd300"><?php echo number_format($giatricaonhat) ?>đ</span>
                   </span>
 
-                  <a href="../bill-detail.php?bid=<?php echo $idgiatrinhat ?>">Xem chi tiết</a>
+                  <a target="_blank" href="../bill-detail.php?bid=<?php echo $idgiatrinhat ?>">Xem chi tiết</a>
                   
                 </div>
               </div>

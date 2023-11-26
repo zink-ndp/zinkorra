@@ -28,8 +28,8 @@
 </ul><span class="heading">Tài khoản</span>
 <ul class="list-unstyled">
 
-    <li> <a href="#"><i class="fas fa-user-edit"></i>Thông tin cá nhân </a></li>
-    <li> <a href="#"><i class="fas fa-key fa-xs"></i>Đổi mật khẩu </a></li>
+    <!-- <li> <a href="#"><i class="fas fa-user-edit"></i>Thông tin cá nhân </a></li>
+    <li> <a href="#"><i class="fas fa-key fa-xs"></i>Đổi mật khẩu </a></li> -->
     <li> <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất </a></li>
 </ul>
 

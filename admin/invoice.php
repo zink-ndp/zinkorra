@@ -162,7 +162,7 @@
                                         ?>
                                 </td>
                             </form>
-                        <td><a href="../bill-detail.php?bid=<?php echo $row['B_ID'] ?>">Chi tiết ></a></td>
+                        <td><a target="_blank" href="../bill-detail.php?bid=<?php echo $row['B_ID'] ?>">Chi tiết ></a></td>
                       </tr>
                       <?php
                           }

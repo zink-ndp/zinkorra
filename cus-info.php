@@ -73,7 +73,7 @@ require 'head.php';
 										</script>
 										<div class="row">
 											<button disabled id="button" type="submit" class=""><span class="txt">Đổi thông tin cá nhân</span></button>
-											<a class="mt-3" href="change-password.php">Đổi mật khẩu</a>
+											<a class="mt-3 align-center" href="change-password.php">Đổi mật khẩu</a>
 										</div>
 									</form>
 								</div>

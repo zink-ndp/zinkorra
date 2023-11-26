@@ -53,7 +53,7 @@
                 <div class="card-body">
                   <form role="form" method="post" action="log.php">
                     <div class="mb-3">
-                      <input required type="text" name="usname" class="form-control form-control-lg" placeholder="Email hoặc SĐT" aria-label="Username">
+                      <input required type="email" name="usname" class="form-control form-control-lg" placeholder="Email hoặc SĐT" aria-label="Username">
                     </div>
                     <div class="mb-3">
                       <input required type="password" name="pass" class="form-control form-control-lg" placeholder="Mật khẩu" aria-label="Password" id="passInput">

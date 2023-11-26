@@ -360,7 +360,7 @@
                                 if ($row['PD_QUANT']!=0){
                                     echo '<div class="price mt-n2" style="font-size: 18px !important;">'.number_format($row["PD_PRICE"]).'đ</div>';
                                 } else {
-                                    echo '<div class="price mt-n2" style="font-size: 18px !important;">TẠM HẾT</div>';
+                                    echo '<div class="price mt-n2" style="font-size: 18px !important;">TẠM HẾT HÀNG</div>';
                                 }
                             ?>
                         </div>

@@ -73,7 +73,15 @@
                                                 <span class="price">Số lượng: </span></label><input class="quant_number price ms-3" type="number" value="1" min="1" name="quant"><br>
                                                 <input type="hidden" name="pdid" value="<?php echo $row["PD_ID"] ?>">
                                                 <span class="price fs-6 text-warning">Còn lại trong kho: <?php echo $row['PD_QUANT'] ?> </span></label><br>
-                                                <button name="addcart-btn" type="submit" class="theme-btn cart-btn px-4 mt-4">Thêm vào giỏ hàng</button>
+                                                <?php
+                                                    if ($row['PD_QUANT']==0){
+                                                        echo '<button disabled name="addcart-btn" type="submit" class="theme-btn cart-btn px-4 mt-4">Tạm hết</button>';
+                                                    } else {
+                                                        echo '<button name="addcart-btn" type="submit" class="theme-btn cart-btn px-4 mt-4">Thêm vào giỏ hàng</button>';
+                                                    }
+                                                ?>
+
+                                                
                                                 <!-- <button name="buynow-btn" type="submit" class="theme-btn cart-btn ms-3 mt-4 px-4">Thanh toán ngay</button> -->
                                             </form>
                                             <script>
