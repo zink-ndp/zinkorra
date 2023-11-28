@@ -198,9 +198,9 @@
 							<div class="icon-box">
 								<span class="icon"><i class="fas fa-couch fa-xs"></i></span>
 							</div>
-							<h3><a href="office-interior.html">Nội thất phòng khách</a></h3>
+							<h3><a href="shop.php?room=1&rname=Ph%C3%B2ng%20kh%C3%A1ch">Nội thất phòng khách</a></h3>
 							<div class="text">Lorem Ipsum is  simply my text of the printing and Ipsum is the Ipsum is simply.</div>
-							<a href="shop.php?room=1&rname=Phòng%20khách" class="read-more">Xem thêm</a>
+							<a href="shop.php?room=1&rname=Ph%C3%B2ng%20kh%C3%A1ch" class="read-more">Xem thêm</a>
 						</div>
 					</div>
 				</div>
@@ -212,7 +212,7 @@
 							<div class="icon-box">
 								<span class="icon"><i class="fas fa-bed fa-xs"></i></span>
 							</div>
-							<h3><a href="office-interior.html">Nội thất phòng ngủ</a></h3>
+							<h3><a href="shop.php?room=2&rname=Phòng%20ngủ">Nội thất phòng ngủ</a></h3>
 							<div class="text">Lorem Ipsum is  simply my text of the printing and Ipsum is the Ipsum is simply.</div>
 							<a href="shop.php?room=2&rname=Phòng%20ngủ" class="read-more">Xem thêm</a>
 						</div>
@@ -226,7 +226,7 @@
 							<div class="icon-box">
 								<span class="icon"><i class="fas fa-utensils fa-xs"></i></span>
 							</div>
-							<h3><a href="office-interior.html">Nội thất nhà bếp</a></h3>
+							<h3><a href="shop.php?room=3&rname=Nhà%20bếp">Nội thất nhà bếp</a></h3>
 							<div class="text">Lorem Ipsum is  simply my text of the printing and Ipsum is the Ipsum is simply.</div>
 							<a href="shop.php?room=3&rname=Nhà%20bếp" class="read-more">Xem thêm</a>
 						</div>
@@ -240,7 +240,7 @@
 							<div class="icon-box">
 								<span class="icon"><i class="fas fa-toilet fa-xs"></i></span>
 							</div>
-							<h3><a href="office-interior.html">Thiết bị vệ sinh</a></h3>
+							<h3><a href="shop.php?room=4&rname=Nhà%20WC">Thiết bị vệ sinh</a></h3>
 							<div class="text">Lorem Ipsum is  simply my text of the printing and Ipsum is the Ipsum is simply.</div>
 							<a href="shop.php?room=4&rname=Nhà%20WC" class="read-more">Xem thêm</a>
 						</div>
@@ -254,7 +254,7 @@
 							<div class="icon-box">
 								<span class="icon"><i class="fas fa-umbrella-beach fa-xs"></i></span>
 							</div>
-							<h3><a href="office-interior.html">Không gian sân vườn</a></h3>
+							<h3><a href="shop.php?room=5&rname=Sân%20vườn">Không gian sân vườn</a></h3>
 							<div class="text">Lorem Ipsum is  simply my text of the printing and Ipsum is the Ipsum is simply.</div>
 							<a href="shop.php?room=5&rname=Sân%20vườn" class="read-more">Xem thêm</a>
 						</div>
@@ -497,71 +497,20 @@
 	</section>
 	
 	<!-- Testimonial Section -->
-	<section class="testimonial-section">
+	<!-- <section class="testimonial-section">
 		<div class="auto-container">
-			<!-- Sec Title -->
 			<div class="sec-title-two centered">
 				<h2>Những người khác nói gì?</h2>
 				<div class="title-text">Hàng triệu người Việt tin tưởng</div>
 			</div>
 			
 			<div class="testimonial-carousel owl-carousel owl-theme">
-				
-				<!-- Testimonial Block -->
 				<div class="testimonial-block">
 					<div class="inner-box">
 						<div class="content">
 							<div class="image-outer">
 								<div class="image">
 									<img src="images/resource/author-1.jpg" alt="" />
-								</div>
-							</div>
-							<h3>Michale John</h3>
-							<div class="title">I got luxuary inteior from Stella Orr'e</div>
-							<div class="text">Osed quia consequuntur magni dolores eos qui rati one voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci sed quia non numqua.</div>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Testimonial Block -->
-				<div class="testimonial-block">
-					<div class="inner-box">
-						<div class="content">
-							<div class="image-outer">
-								<div class="image">
-									<img src="images/resource/author-2.jpg" alt="" />
-								</div>
-							</div>
-							<h3>Michale John</h3>
-							<div class="title">I got luxuary inteior from Stella Orr'e</div>
-							<div class="text">Osed quia consequuntur magni dolores eos qui rati one voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci sed quia non numqua.</div>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Testimonial Block -->
-				<div class="testimonial-block">
-					<div class="inner-box">
-						<div class="content">
-							<div class="image-outer">
-								<div class="image">
-									<img src="images/resource/author-1.jpg" alt="" />
-								</div>
-							</div>
-							<h3>Michale John</h3>
-							<div class="title">I got luxuary inteior from Stella Orr'e</div>
-							<div class="text">Osed quia consequuntur magni dolores eos qui rati one voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci sed quia non numqua.</div>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Testimonial Block -->
-				<div class="testimonial-block">
-					<div class="inner-box">
-						<div class="content">
-							<div class="image-outer">
-								<div class="image">
-									<img src="images/resource/author-2.jpg" alt="" />
 								</div>
 							</div>
 							<h3>Michale John</h3>
@@ -573,7 +522,7 @@
 				
 			</div>
 		</div>
-	</section>
+	</section> -->
 	<!-- End Testimonial Section -->
 	
 	<!-- Featured Section -->
@@ -655,74 +604,6 @@
 		</div>
 	</section>
 	<!-- End Featured Section -->
-	
-	<!-- News Section -->
-	<section class="news-section">
-		<div class="auto-container">
-			<!-- Sec Title -->
-			<div class="sec-title">
-				<h2>Need a design fix? Read our magazine</h2>
-				<div class="text">Stay updated with latest trends, inspiration, expert tips, DIYs and more</div>
-			</div>
-			
-			<div class="row clearfix">
-				
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image">
-							<a href="blog-detail.html"><img src="images/resource/news-1.jpg" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							<ul class="post-meta">
-								<li>By <span>Michale</span></li>
-								<li>Modular Kitchen</li>
-							</ul>
-							<h3><a href="blog-detail.html">15 Vastu ideas for the main door emphasizes on every par ...</a></h3>
-							<a href="blog-detail.html" class="read-more">Xem thêm <span class="icon flaticon-right-arrow-1"></span></a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInRight" data-wow-delay="250ms" data-wow-duration="1500ms">
-						<div class="image">
-							<a href="blog-detail.html"><img src="images/resource/news-2.jpg" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							<ul class="post-meta">
-								<li>By <span>Michale</span></li>
-								<li>Interior, awesome</li>
-							</ul>
-							<h3><a href="blog-detail.html">Storage ideas for the bedroom by interior designers ...</a></h3>
-							<a href="blog-detail.html" class="read-more">Xem thêm <span class="icon flaticon-right-arrow-1"></span></a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInRight" data-wow-delay="500ms" data-wow-duration="1500ms">
-						<div class="image">
-							<a href="blog-detail.html"><img src="images/resource/news-3.jpg" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							<ul class="post-meta">
-								<li>By <span>Michale</span></li>
-								<li>Interior, awesome</li>
-							</ul>
-							<h3><a href="blog-detail.html">Kids bedroom design ideas by interior designers in NY</a></h3>
-							<a href="blog-detail.html" class="read-more">Xem thêm <span class="icon flaticon-right-arrow-1"></span></a>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-			
-		</div>
-	</section>
-	<!-- End News Section -->
 	
 	<!-- Call To Action Section -->
 	<section class="call-to-action-section" style="background-image: url(images/background/1.jpg)">
