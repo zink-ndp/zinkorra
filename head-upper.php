@@ -50,10 +50,10 @@
                                         if (isset($_SESSION["id"])){
                                             ?>
                                                 <li> <a href="bill.php?active=1">Đơn hàng</a>  </li>
-                                                <li class="dropdown"><a href="myaccount.php"></span>Hi, <?php echo $_SESSION["lname"] ?></a>
+                                                <li class="dropdown"><a href="cus-info.php"></span>Hi, <?php echo $_SESSION["lname"] ?></a>
                                                     <ul>
                                                         <li><a href="cus-info.php">Thông tin cá nhân</a></li>
-                                                        <li><a href="change-pw.php">Đổi mật khẩu</a></li>
+                                                        <li><a href="change-password.php">Đổi mật khẩu</a></li>
                                                         <li><a href="logout.php">Đăng xuất</a></li>
                                                     </ul>
                                                 </li>

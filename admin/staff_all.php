@@ -24,16 +24,16 @@
         </div>
         <section class="no-padding-top no-padding-bottom">
           <div class="container-fluid">
-            <div class="table-responsive"> 
+            <div> 
               <table class="table table-striped table-hover">
                   <thead>
                       <th class="col-1">ID</th>
-                      <th class="col-2">Tên NV</th>
+                      <th class="col-3">Tên NV</th>
                       <th class="col-2">Chức vụ</th>
                       <th class="col-1">Giới tính</th>
                       <th class="col-1">SĐT</th>
                       <th class="col-3">Email</th>
-                      <th class="col-2"></th>
+                      <th class="col-1"></th>
                   </thead>
                   <tbody>
                       <?php

@@ -22,14 +22,17 @@
           <div class="container-fluid">
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
               <h2 class="h5 no-margin-bottom">Danh sách sản phẩm</h2>
-              <input type="text" name="stfSearch" id="stfSearch" class="form-control w-50" placeholder="Tìm tên sản phẩm">
+              <form class="d-flex mt-3 form-group w-50" action="product_all.php" method="get">
+                <input type="text" name="stfSearch" id="stfSearch" class="form-control" placeholder="Tìm tên sản phẩm">
+                <button type="submit" class="btn btn-warning ml-3">Tìm</button>
+              </form>
               <a href="product_add.php">(Thêm sản phẩm mới)</a>
             </div>
           </div>
         </div>
         <section class="no-padding-top no-padding-bottom">
           <div class="container-fluid">
-            <div class="table-responsive"> 
+            <div> 
                 <table class="table table-striped table-hover">
                     <thead>
                         <th class="col-1">ID</th>
@@ -41,7 +44,13 @@
                     </thead>
                     <tbody>
                         <?php
-                            $result = querySqlwithResult($conn,"select * from products");;
+                            if (isset($_GET['stfSearch'])){
+                              $search = " and PD_NAME like '%{$_GET['stfSearch']}%'";
+                            } else {
+                              $search = "";
+                            }
+                            $sql = "select * from products where 1".$search;
+                            $result = querySqlwithResult($conn,$sql);
                             $result_all = $result -> fetch_all(MYSQLI_ASSOC);
                             foreach ($result_all as $row) {
                         ?>
