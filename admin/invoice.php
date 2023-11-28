@@ -87,20 +87,22 @@
                   <thead>
                       <th class="col-1">ID</th>
                       <th class="col-2">Tên KH</th>
-                      <th class="col-3">Địa chỉ</th>
+                      <th class="col-2">Địa chỉ</th>
                       <th class="col-1">SĐT</th>
                       <th class="col-1">Ngày</th>
-                      <th class="col-2">Trạng thái</th>
+                      <th class="col-2">NV xác nhận</th>
+                      <th class="col-1">Trạng thái</th>
                       <th class="col-1"></th>
                       <th class="col-1"></th>
                   </thead>
                   <tbody>
                       <?php
                             $stt = $_GET['stt'];
-                            $sql = "select b.*, c.CTM_NAME, c.CTM_PHONE, s.* from bill b
-                                    join custommer c on c.CTM_ID = b.CTM_ID
-                                    join status s on s.ST_ID = b.ST_ID
-                                    where b.ST_ID = $stt";
+                            $sql = "select b.*, stf.STF_NAME, c.CTM_NAME, c.CTM_PHONE, s.* from bill b
+                            join custommer c on c.CTM_ID = b.CTM_ID
+                            join status s on s.ST_ID = b.ST_ID
+                            join staff stf on stf.STF_ID = b.STF_ID
+                            where b.ST_ID = $stt";
                             if (isset( $_GET['from']) && $_GET['to']) {
                                 $from = $_GET['from'];
                                 $to = $_GET['to'];
@@ -117,6 +119,7 @@
                             <td><?php echo $row['B_ADDRESS'] ?></td>
                             <td><?php echo $row['CTM_PHONE'] ?></td>
                             <td><?php echo date_format(date_create($row['B_DATE']),"d-m-Y") ?></td>
+                            <td><?php echo $row['STF_NAME'] ?></td>
                             <form action="invoice_update.php" method="get">
                                 <td>
                                     <?php 

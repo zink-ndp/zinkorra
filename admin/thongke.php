@@ -94,4 +94,52 @@ $rs = querySqlwithResult($conn, $sql);
 $r = $rs->fetch_assoc();
 $spbannhieunhat = $r['PD_NAME'];
 $idspbannhieu = $r['PD_ID'];
+
+//--------------------------------
+
+$sql = "SELECT it.ITR_NAME, sum(pd.PD_PRICE) as dt
+FROM bill_detail bd
+join products pd on pd.PD_ID = bd.PD_ID
+join bill b on b.B_ID = bd.B_ID
+join interior it on it.ITR_ID = pd.ITR_ID
+where " . $timeframe . " group by it.ITR_NAME;";
+
+$rs = querySqlwithResult($conn, $sql);
+$itrn = array();
+$itrdata = array();
+while ($itr = mysqli_fetch_assoc($rs)) {
+    $itrn[] = $itr['ITR_NAME'];
+    $itrdata[] = $itr['dt'];
+}
+$itrnJson = json_encode($itrn);
+$itrdataJson = json_encode($itrdata);
+echo '<script>';
+echo 'var itrNameJson = ' . $itrnJson . '; ';
+echo 'var itrDataJson = ' . $itrdataJson . '; ';
+echo '</script>';
+
+//--------------------------------
+
+
+$sql = "SELECT t.TY_NAME, sum(pd.PD_PRICE) as dt
+FROM bill_detail bd
+join products pd on pd.PD_ID = bd.PD_ID
+join bill b on b.B_ID = bd.B_ID
+join type t on t.TY_ID = pd.TY_ID
+where " . $timeframe . " group by t.TY_NAME;";
+
+$rs = querySqlwithResult($conn, $sql);
+$tName = array();
+$tData = array();
+while ($itr = mysqli_fetch_assoc($rs)) {
+    $tName[] = $itr['TY_NAME'];
+    $tData[] = $itr['dt'];
+}
+$tNameJson = json_encode($tName);
+$tDataJson = json_encode($tData);
+echo '<script>';
+echo 'var typeNameJson = ' . $tNameJson . '; ';
+echo 'var typeDataJson = ' . $tDataJson . '; ';
+echo '</script>';
+
 ?>

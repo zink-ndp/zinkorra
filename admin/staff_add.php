@@ -30,15 +30,15 @@ require 'head.php';
             <div class="col-6 block">
               <form action="staff_add_action.php" method="post">
                 <div class="form-group">
-                  <label class="form-control-label"><strong>Họ và tên:</strong></label>
-                  <input name="name" type="text" placeholder="Nguyễn Văn A" class="form-control ">
-                </div>
-                <div class="form-group">
                   <label class="form-control-label"><strong>Vai trò:</strong></label>
                   <select name="role" class="form-control mb-3 mb-3">
                     <option value="2">Nhân viên</option>
                     <option value="1">Quản lý</option>
                   </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label"><strong>Họ và tên:</strong></label>
+                  <input name="name" type="text" placeholder="Nguyễn Văn A" class="form-control ">
                 </div>
                 <div class="form-group">
                   <label class="form-control-label"><strong>Giới tính:</strong></label>

@@ -60,13 +60,9 @@
                           <td><?php echo $row['STF_EMAIL'] ?></td>
                           <td>
                               <div class="row">
-                                  <form action="product_edit.php" method="get">
+                                  <a href="staff_edit.php?stfid=<?php echo $row['STF_ID'] ?>">
                                       <button class="btn btn-link text-warning"><i class="fas fa-edit"></i></button>
-                                  </form>
-                                  <form action="product_del.php" method="get">
-                                      <button class="btn btn-link text-warning"><i class="fas fa-trash-alt"></i></button>
-                                  </form>
-                              </div>
+                                  </a>
                           </td>
                       </tr>
                       <?php
